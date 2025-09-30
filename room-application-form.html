@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Room - RoomThere</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Color Scheme */
+        :root {
+            --navy-blue: #003366;
+            --kelly-green: #4CBB17;
+            --orange: #FF8C00;
+            --white: #FFFFFF;
+            --light-gray: #F8F8F8;
+            --dark-gray: #333333;
+            --medium-gray: #767676;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Skip link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--navy-blue);
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            text-decoration: none;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--navy-blue);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--kelly-green);
+        }
+        
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--navy-blue);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+        
+        .logout-link {
+            color: var(--navy-blue);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .logout-link:hover, .logout-link:focus {
+            background: var(--light-gray);
+        }
+        
+        /* Application Header */
+        .application-header {
+            background: linear-gradient(135deg, var(--navy-blue) 0%, #002244 100%);
+            color: var(--white);
+            padding: 40px 0;
+            margin-bottom: 30px;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .application-header-content {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .room-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            background-color: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .room-image i {
+            font-size: 60px;
+            color: var(--medium-gray);
+        }
+        
+        .room-info h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .room-info p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        
+        .homeowner-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .homeowner-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--kelly-green);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        
+        .homeowner-details h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+        
+        .homeowner-details p {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        /* Application Container */
+        .application-container {
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .application-intro {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--light-gray);
+        }
+        
+        .application-intro h2 {
+            font-size: 1.8rem;
+            color: var(--navy-blue);
+            margin-bottom: 10px;
+        }
+        
+        .application-intro p {
+            color: var(--medium-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Application Form */
+        .application-form {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .form-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            color: var(--navy-blue);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title i {
+            color: var(--kelly-green);
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--navy-blue);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.2);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .checkbox-group input {
+            width: auto;
+        }
+        
+        /* Application Tips */
+        .application-tips {
+            background: #f0f7ff;
+            border-left: 4px solid var(--navy-blue);
+            padding: 20px;
+            border-radius: 5px;
+            margin: 25px 0;
+        }
+        
+        .application-tips h4 {
+            color: var(--navy-blue);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .application-tips ul {
+            padding-left: 20px;
+        }
+        
+        .application-tips li {
+            margin-bottom: 8px;
+            color: var(--dark-gray);
+        }
+        
+        /* Form Actions */
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid var(--light-gray);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: var(--navy-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover, .btn:focus {
+            background: #002244;
+            transform: translateY(-2px);
+            outline: 2px solid var(--kelly-green);
+            outline-offset: 2px;
+        }
+        
+        .btn-secondary {
+            background: var(--kelly-green);
+        }
+        
+        .btn-secondary:hover, .btn-secondary:focus {
+            background: #3da014;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--navy-blue);
+            border: 2px solid var(--navy-blue);
+        }
+        
+        .btn-outline:hover, .btn-outline:focus {
+            background: rgba(0, 51, 102, 0.05);
+        }
+        
+        /* Status Message */
+        .status-message {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            text-align: center;
+            display: none;
+        }
+        
+        .status-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 40px 0 20px;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        footer .logo {
+            color: var(--white);
+        }
+        
+        footer .logo span {
+            color: var(--kelly-green);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        
+        .social-links a:hover, .social-links a:focus {
+            color: var(--orange);
+            background-color: rgba(255, 255, 255, 0.1);
+            outline: none;
+        }
+        
+        /* Fix for X/Twitter icon visibility */
+        .fa-x-twitter {
+            color: var(--white) !important;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        /* Focus styles for all interactive elements */
+        a:focus, button:focus, input:focus, select:focus, textarea:focus {
+            outline: 2px solid var(--kelly-green);
+            outline-offset: 2px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .application-header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .room-image {
+                width: 120px;
+                height: 120px;
+                margin: 0 auto;
+            }
+            
+            .homeowner-info {
+                justify-content: center;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .btn:hover {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip link for keyboard users -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Room<span>There</span></a>
+                <div class="user-menu">
+                    <div class="user-info">
+                        <div class="user-avatar">AJ</div>
+                        <span>Alex Johnson</span>
+                    </div>
+                    <a href="index.html" class="logout-link">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Log Out</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Application Header -->
+    <section class="application-header">
+        <div class="container">
+            <div class="application-header-content">
+                <div class="room-image">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="room-info">
+                    <h1>Spacious Room in North Park</h1>
+                    <p>$850/month · Private room & bath · Available Now</p>
+                    <div class="homeowner-info">
+                        <div class="homeowner-avatar">MR</div>
+                        <div class="homeowner-details">
+                            <h3>Margaret Robinson</h3>
+                            <p>Verified Homeowner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="application-container">
+            <div class="application-intro">
+                <h2>Apply for This Room</h2>
+                <p>Complete this application to introduce yourself to Margaret. Your profile information will be included automatically, but you can add specific details about why you're interested in this room.</p>
+            </div>
+            
+            <div id="statusMessage" class="status-message" role="alert" aria-live="polite"></div>
+            
+            <form class="application-form" id="applicationForm">
+                <!-- Section 1: Move-in Details -->
+                <div class="form-section">
+                    <h3 class="section-title"><i class="fas fa-calendar-alt"></i> Move-in Details</h3>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="move-in-date">Desired Move-In Date</label>
+                            <input type="date" id="move-in-date" name="moveInDate" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lease-length">Preferred Lease Length</label>
+                            <select id="lease-length" name="leaseLength" required>
+                                <option value="">Select lease length</option>
+                                <option value="3">3 months</option>
+                                <option value="6">6 months</option>
+                                <option value="12">12 months (preferred)</option>
+                                <option value="24">24 months</option>
+                                <option value="month-to-month">Month-to-month</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Personal Message -->
+                <div class="form-section">
+                    <h3 class="section-title"><i class="fas fa-comment"></i> Personal Message</h3>
+                    
+                    <div class="form-group">
+                        <label for="message-to-homeowner">Message to Margaret</label>
+                        <textarea id="message-to-homeowner" name="message" placeholder="Introduce yourself and explain why you're interested in this room. Mention anything specific that caught your attention or ask any questions you might have." required></textarea>
+                    </div>
+                    
+                    <div class="application-tips">
+                        <h4><i class="fas fa-lightbulb"></i> Tips for a great message:</h4>
+                        <ul>
+                            <li>Mention what you appreciate about the room or location</li>
+                            <li>Briefly describe your daily routine and lifestyle</li>
+                            <li>Explain why you think you'd be a good fit</li>
+                            <li>Ask thoughtful questions about the living situation</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Additional Information -->
+                <div class="form-section">
+                    <h3 class="section-title"><i class="fas fa-user-plus"></i> Additional Information</h3>
+                    
+                    <div class="form-group">
+                        <label for="occupation-details">Current Occupation & Schedule</label>
+                        <textarea id="occupation-details" name="occupationDetails" placeholder="Provide details about your work or study schedule, including typical hours and whether you work from home."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="hobbies-interests">Hobbies & Interests</label>
+                        <textarea id="hobbies-interests" name="hobbies" placeholder="Share a bit about your interests and how you like to spend your free time. This helps homeowners get to know you better."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="references">References</label>
+                        <textarea id="references" name="references" placeholder="Optional: You can provide contact information for references (previous landlords, employers, etc.)."></textarea>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Interview Availability -->
+                <div class="form-section">
+                    <h3 class="section-title"><i class="fas fa-clock"></i> Interview Availability</h3>
+                    
+                    <div class="form-group">
+                        <label for="availability">When are you available for an interview or room viewing?</label>
+                        <textarea id="availability" name="availability" placeholder="Please provide your general availability over the next week (e.g., 'Weekdays after 5 PM, or anytime on Saturday')." required></textarea>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="agree-terms" name="agreeTerms" required>
+                        <label for="agree-terms">I agree to the <a href="#">RoomThere Terms of Service</a> and understand that my application will be sent to the homeowner for review.</label>
+                    </div>
+                </div>
+                
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <a href="room-details.html" class="btn btn-outline">Cancel</a>
+                    <button type="submit" class="btn btn-secondary">Submit Application</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">Room<span>There</span></div>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                    <a href="#" aria-label="X (formerly Twitter)"><i class="fab fa-x-twitter" aria-hidden="true"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 RoomThere. All rights reserved.</p>
+                <p>Creating safe, intergenerational housing solutions.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Form submission
+        document.getElementById('applicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const statusMessage = document.getElementById('statusMessage');
+            
+            // Validate form
+            const agreeTerms = document.getElementById('agree-terms');
+            if (!agreeTerms.checked) {
+                statusMessage.textContent = 'Please agree to the Terms of Service before submitting your application.';
+                statusMessage.className = 'status-message status-error';
+                statusMessage.style.display = 'block';
+                return;
+            }
+            
+            // Show success message
+            statusMessage.textContent = 'Application submitted successfully! Margaret will review your application and contact you soon.';
+            statusMessage.className = 'status-message status-success';
+            statusMessage.style.display = 'block';
+            
+            // Scroll to status message
+            statusMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // In a real app, this would submit the form data to the server
+            console.log('Application submitted with data:', {
+                moveInDate: document.getElementById('move-in-date').value,
+                leaseLength: document.getElementById('lease-length').value,
+                message: document.getElementById('message-to-homeowner').value,
+                occupationDetails: document.getElementById('occupation-details').value,
+                hobbies: document.getElementById('hobbies-interests').value,
+                references: document.getElementById('references').value,
+                availability: document.getElementById('availability').value
+            });
+            
+            // Reset form after successful submission
+            setTimeout(() => {
+                document.getElementById('applicationForm').reset();
+                statusMessage.style.display = 'none';
+                
+                // In a real app, this would redirect to a confirmation page or dashboard
+                // window.location.href = 'application-confirmation.html';
+            }, 5000);
+        });
+        
+        // Set minimum date for move-in to today
+        const today = new Date();
+        const minDate = today.toISOString().split('T')[0];
+        document.getElementById('move-in-date').min = minDate;
+        
+        // Add focus styles for keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
+        });
+        
+        document.addEventListener('mousedown', function() {
+            document.body.classList.remove('keyboard-navigation');
+        });
+        
+        // Auto-focus on first form field for better UX
+        window.addEventListener('load', function() {
+            document.getElementById('move-in-date').focus();
+        });
+    </script>
+</body>
+</html>

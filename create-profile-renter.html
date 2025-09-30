@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Renter Profile - RoomThere</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --navy-blue: #003366;
+            --kelly-green: #4CBB17;
+            --orange: #FF8C00;
+            --white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --dark-gray: #4A4A4A;
+            --text-dark: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--light-gray);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--white);
+        }
+        
+        .logo span {
+            color: var(--kelly-green);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover, nav ul li a:focus {
+            color: var(--orange);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--white);
+        }
+        
+        /* Page Header */
+        .page-header {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Verification Banner */
+        .verification-banner {
+            background-color: var(--kelly-green);
+            color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .verification-banner h2 {
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .verification-banner p {
+            margin-bottom: 1.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.1rem;
+        }
+        
+        .verification-benefits {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .benefit-item {
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+            padding: 1.5rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+        }
+        
+        .benefit-item i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .benefit-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .verification-options {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        /* Form Section */
+        .form-section {
+            padding: 3rem 0;
+            background-color: var(--white);
+            flex: 1;
+        }
+        
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .required-notice {
+            background-color: var(--kelly-green);
+            padding: 0.75rem;
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            border-left: 4px solid var(--orange);
+            color: var(--white);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--navy-blue);
+        }
+        
+        .form-group .field-note {
+            font-size: 0.75rem;
+            color: var(--dark-gray);
+            font-style: italic;
+            margin-top: 0.25rem;
+            line-height: 1.3;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--navy-blue);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.2);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-group input:disabled,
+        .form-group select:disabled,
+        .form-group textarea:disabled {
+            background-color: #f5f5f5;
+            color: #999;
+            cursor: not-allowed;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .checkbox-group input {
+            width: auto;
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+        
+        .checkbox-group label {
+            font-weight: normal;
+        }
+        
+        .form-section-title {
+            font-size: 1.5rem;
+            color: var(--navy-blue);
+            margin: 2.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--orange);
+        }
+        
+        .info-box {
+            background-color: var(--white);
+            border-left: 4px solid var(--orange);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .info-box h3 {
+            color: var(--navy-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .preferences-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .preference-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .preference-item input {
+            width: auto;
+            margin-right: 10px;
+        }
+        
+        .photo-upload {
+            border: 2px dashed #ddd;
+            border-radius: 5px;
+            padding: 2rem;
+            text-align: center;
+            margin: 1.5rem 0;
+            transition: border 0.3s;
+        }
+        
+        .photo-upload:hover {
+            border-color: var(--navy-blue);
+        }
+        
+        .photo-upload i {
+            font-size: 3rem;
+            color: var(--navy-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .photo-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .photo-thumbnail {
+            width: 100px;
+            height: 100px;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .photo-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .remove-photo {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: var(--navy-blue);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover, .btn-primary:focus {
+            background-color: #002244;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: var(--orange);
+            color: var(--white);
+        }
+        
+        .btn-secondary:hover, .btn-secondary:focus {
+            background-color: #e67e00;
+            transform: translateY(-2px);
+        }
+        
+        .btn-tertiary {
+            background-color: var(--kelly-green);
+            color: var(--white);
+        }
+        
+        .btn-tertiary:hover, .btn-tertiary:focus {
+            background-color: #3da014;
+            transform: translateY(-2px);
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2.5rem;
+        }
+        
+        /* Verification Status */
+        .verification-status {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .verified {
+            background-color: rgba(76, 187, 23, 0.1);
+            border-left: 4px solid var(--kelly-green);
+        }
+        
+        .not-verified {
+            background-color: rgba(255, 140, 0, 0.1);
+            border-left: 4px solid var(--orange);
+        }
+        
+        .verification-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+        
+        .verified .verification-icon {
+            color: var(--kelly-green);
+        }
+        
+        .not-verified .verification-icon {
+            color: var(--orange);
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 700px;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--navy-blue);
+            background: none;
+            border: none;
+        }
+        
+        .modal h2 {
+            color: var(--navy-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .modal p {
+            margin-bottom: 1rem;
+        }
+        
+        .modal ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Simple Footer */
+        footer {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 25px 0 15px;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        footer .logo {
+            color: var(--white);
+        }
+        
+        footer .logo span {
+            color: var(--kelly-green);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        
+        .social-links a:hover, .social-links a:focus {
+            color: var(--orange);
+            background-color: rgba(255, 255, 255, 0.1);
+            outline: none;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #ccc;
+            width: 100%;
+            margin-top: 15px;
+        }
+        
+        .disclaimer {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        /* Focus styles for all interactive elements */
+        a:focus, button:focus, input:focus, select:focus, textarea:focus {
+            outline: 2px solid var(--kelly-green);
+            outline-offset: 2px;
+        }
+        
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --navy-blue: #000080;
+                --kelly-green: #008000;
+                --orange: #FF4500;
+                --white: #FFFFFF;
+                --light-gray: #F0F0F0;
+                --dark-gray: #000000;
+                --text-dark: #000000;
+            }
+        }
+        
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .btn:hover, .btn:focus {
+                transform: none;
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .form-row {
+                flex-wrap: wrap;
+            }
+            
+            .form-row .form-group {
+                min-width: 48%;
+            }
+            
+            .verification-options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .verification-options .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .verification-benefits {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                flex-direction: column;
+                display: none;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .form-row .form-group {
+                min-width: 100%;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .preferences-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+        
+        /* Screen reader only class */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip link for keyboard users -->
+    <a href="#main-content" class="skip-link sr-only">Skip to main content</a>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo" aria-label="RoomThere Home">
+                    Room<span>There</span>
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="homeowner-profile.html" class="btn-secondary">List Your Room</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu" aria-label="Toggle navigation menu">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Create Your Renter Profile</h1>
+            <p>Tell homeowners about yourself and what you're looking for. A complete profile helps us find the perfect match for your housing needs.</p>
+        </div>
+    </section>
+
+    <!-- Verification Banner -->
+    <section class="form-section">
+        <div class="container">
+            <div class="verification-banner">
+                <h2>Get Your Verified Badge</h2>
+                <p>Stand out from the crowd and show potential roommates you're serious, safe, and trustworthy.</p>
+                
+                <div class="verification-benefits">
+                    <div class="benefit-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Build Instant Trust</h3>
+                        <p>Show homeowners you've passed our verification process</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-eye"></i>
+                        <h3>Get Your Profile Seen First</h3>
+                        <p>Verified profiles appear higher in search results</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-comments"></i>
+                        <h3>Message Potential Housemates Directly</h3>
+                        <p>Connect faster with verified communication features</p>
+                    </div>
+                </div>
+                
+                <div class="verification-options">
+                    <a href="payment.html" class="btn btn-tertiary" aria-label="Get verified now">
+                        <i class="fas fa-user-check" aria-hidden="true"></i> Get Verified Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-section">
+        <div class="container">
+            <form id="renter-profile-form" class="form-container">
+                <div class="required-notice">
+                    <strong>Note:</strong> All fields are mandatory unless stated otherwise.
+                </div>
+                
+                <!-- Verification Status -->
+                <div class="verification-status not-verified" id="verification-status">
+                    <div class="verification-icon">
+                        <i class="fas fa-exclamation-circle" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <h3>Background Check Not Completed</h3>
+                        <p>Complete verification to increase your chances of finding the perfect room.</p>
+                    </div>
+                </div>
+                
+                <h2 class="form-section-title">Personal Information</h2>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" name="first-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" name="last-name" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="occupation">Occupation</label>
+                        <select id="occupation" name="occupation" required>
+                            <option value="">Select Occupation</option>
+                            <option value="grad-student">Graduate Student</option>
+                            <option value="young-professional">Young Professional</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="school-employer">School or Employer</label>
+                        <input type="text" id="school-employer" name="school-employer" required>
+                    </div>
+                </div>
+                
+                <h2 class="form-section-title">About You</h2>
+                
+                <div class="form-group">
+                    <label for="personal-description">Tell Homeowners About Yourself</label>
+                    <textarea id="personal-description" name="personal-description" placeholder="Share your interests, lifestyle, and what you're looking for in a living situation..." required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="references">References (optional)</label>
+                    <textarea id="references" name="references" placeholder="You can provide references from previous landlords, employers, or professors..."></textarea>
+                </div>
+                
+                <h2 class="form-section-title">Housing Preferences</h2>
+                
+                <div class="form-group">
+                    <label for="move-in-date">Desired Move-In Date</label>
+                    <input type="date" id="move-in-date" name="move-in-date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="lease-length">Preferred Lease Length</label>
+                    <select id="lease-length" name="lease-length" required>
+                        <option value="">Select Length</option>
+                        <option value="3-months">3 Months</option>
+                        <option value="6-months">6 Months</option>
+                        <option value="1-year">1 Year</option>
+                        <option value="flexible">Flexible</option>
+                    </select>
+                </div>
+                
+                <h2 class="form-section-title">Lifestyle & Preferences</h2>
+                <p>Select preferences that match your lifestyle:</p>
+                
+                <div class="preferences-grid">
+                    <div class="preference-item">
+                        <input type="checkbox" id="pref-pets" name="preferences" value="pets-ok">
+                        <label for="pref-pets">Comfortable with Pets</label>
+                    </div>
+                    <div class="preference-item">
+                        <input type="checkbox" id="pref-smoke-free" name="preferences" value="smoke-free">
+                        <label for="pref-smoke-free">Prefer Smoke-Free Home</label>
+                    </div>
+                    <div class="preference-item">
+                        <input type="checkbox" id="pref-quiet" name="preferences" value="quiet">
+                        <label for="pref-quiet">Quiet Environment</label>
+                    </div>
+                    <div class="preference-item">
+                        <input type="checkbox" id="pref-social" name="preferences" value="social">
+                        <label for="pref-social">Social Environment</label>
+                    </div>
+                    <div class="preference-item">
+                        <input type="checkbox" id="pref-parking" name="preferences" value="parking">
+                        <label for="pref-parking">Need Parking</label>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <h3>Availability for Help Tasks</h3>
+                    <p>If you're open to reducing rent through light assistance, indicate what types of tasks you'd be comfortable with:</p>
+                    
+                    <div class="preferences-grid">
+                        <div class="preference-item">
+                            <input type="checkbox" id="help-tech" name="help-types" value="tech">
+                            <label for="help-tech">Technology Assistance</label>
+                        </div>
+                        <div class="preference-item">
+                            <input type="checkbox" id="help-grocery" name="help-types" value="grocery">
+                            <label for="help-grocery">Grocery Shopping</label>
+                        </div>
+                        <div class="preference-item">
+                            <input type="checkbox" id="help-transport" name="help-types" value="transport">
+                            <label for="help-transport">Transportation</label>
+                        </div>
+                        <div class="preference-item">
+                            <input type="checkbox" id="help-pets" name="help-types" value="pets">
+                            <label for="help-pets">Pet Care</label>
+                        </div>
+                        <div class="preference-item">
+                            <input type="checkbox" id="help-yard" name="help-types" value="yard">
+                            <label for="help-yard">Yard Work</label>
+                        </div>
+                        <div class="preference-item">
+                            <input type="checkbox" id="help-plants" name="help-types" value="plants">
+                            <label for="help-plants">Watering Plants</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <h2 class="form-section-title">Profile Photo</h2>
+                <p>Add a profile photo to help homeowners get to know you better.</p>
+                
+                <div class="photo-upload">
+                    <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
+                    <p>Upload a profile photo (required)</p>
+                    <input type="file" id="photo-upload" name="photos" accept="image/*" style="display: none;" required>
+                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('photo-upload').click()">Select Photo</button>
+                </div>
+                
+                <div class="photo-preview" id="photo-preview">
+                    <!-- Photo preview will be added here by JavaScript -->
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">I agree to the <a href="#" onclick="openModal('terms-modal')">Terms of Service</a> and <a href="#" onclick="openModal('privacy-modal')">Privacy Policy</a></label>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary">Save as Draft</button>
+                    <button type="submit" class="btn btn-primary">Create Profile</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Simple Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">Room<span>There</span></div>
+                <div class="social-links">
+                    <a href="#" aria-label="Visit our Facebook page">
+                        <i class="fab fa-facebook" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" aria-label="Visit our Instagram page">
+                        <i class="fab fa-instagram" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="disclaimer">
+                <p><strong>Important Notice:</strong> RoomThere facilitates connections between users only. All rental agreements, financial arrangements, and living terms are negotiated and managed directly between the homeowner and the renter. RoomThere is not a party to any agreements and does not provide legal or financial advice.</p>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 RoomThere. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Terms of Service Modal -->
+    <div id="terms-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('terms-modal')" aria-label="Close modal">&times;</button>
+            <h2>Terms of Service</h2>
+            <p>Last updated: September 2025</p>
+            
+            <h3>1. Acceptance of Terms</h3>
+            <p>By accessing or using RoomThere services, you agree to be bound by these Terms of Service.</p>
+            
+            <h3>2. Description of Service</h3>
+            <p>RoomThere is a platform that connects homeowners with graduate students and young professionals seeking housing. We facilitate connections but are not party to any rental agreements.</p>
+            
+            <h3>3. User Responsibilities</h3>
+            <p>Users are responsible for:</p>
+            <ul>
+                <li>Providing accurate information in their profiles</li>
+                <li>Conducting their own due diligence when considering potential matches</li>
+                <li>Creating and managing their own rental agreements</li>
+                <li>Complying with all applicable laws and regulations</li>
+            </ul>
+            
+            <h3>4. Prohibited Activities</h3>
+            <p>Users may not:</p>
+            <ul>
+                <li>Request or provide medical care through the platform</li>
+                <li>Discriminate based on protected characteristics</li>
+                <li>Use the service for any illegal purposes</li>
+                <li>Misrepresent themselves or their properties</li>
+            </ul>
+            
+            <h3>5. Limitation of Liability</h3>
+            <p>RoomThere is not responsible for the actions of users or the outcomes of connections made through our platform.</p>
+            
+            <p>These terms may be updated periodically. Continued use of the service constitutes acceptance of any changes.</p>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacy-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('privacy-modal')" aria-label="Close modal">&times;</button>
+            <h2>Privacy Policy</h2>
+            <p>Last updated: September 2025</p>
+            
+            <h3>1. Information We Collect</h3>
+            <p>We collect information you provide directly to us, including:</p>
+            <ul>
+                <li>Contact information (name, email, phone number)</li>
+                <li>Property details and preferences</li>
+                <li>Communication preferences</li>
+            </ul>
+            
+            <h3>2. How We Use Your Information</h3>
+            <p>We use your information to:</p>
+            <ul>
+                <li>Facilitate connections between homeowners and renters</li>
+                <li>Improve our services</li>
+                <li>Communicate with you about your account</li>
+            </ul>
+            
+            <h3>3. Information Sharing</h3>
+            <p>We do not sell your personal information. We may share limited information with potential matches, but sensitive details like your exact address are kept private until you choose to share them.</p>
+            
+            <h3>4. Data Security</h3>
+            <p>We implement reasonable security measures to protect your information, but cannot guarantee absolute security.</p>
+            
+            <h3>5. Your Rights</h3>
+            <p>You may access, correct, or delete your personal information through your account settings.</p>
+            
+            <p>Contact us at privacy@roomthere.com with any questions about our privacy practices.</p>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+        
+        // Photo upload preview
+        document.getElementById('photo-upload').addEventListener('change', function(e) {
+            const previewContainer = document.getElementById('photo-preview');
+            previewContainer.innerHTML = '';
+            
+            if (this.files.length > 0) {
+                const file = this.files[0];
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const thumbnail = document.createElement('div');
+                    thumbnail.className = 'photo-thumbnail';
+                    
+                    const img = new Image();
+                    img.src = e.target.result;
+                    img.alt = 'Profile photo preview';
+                    
+                    const removeBtn = document.createElement('button');
+                    removeBtn.className = 'remove-photo';
+                    removeBtn.innerHTML = '×';
+                    removeBtn.setAttribute('aria-label', 'Remove photo');
+                    removeBtn.onclick = function() {
+                        thumbnail.remove();
+                        document.getElementById('photo-upload').value = '';
+                    };
+                    
+                    thumbnail.appendChild(img);
+                    thumbnail.appendChild(removeBtn);
+                    previewContainer.appendChild(thumbnail);
+                };
+                
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+        
+        // Form submission
+        document.getElementById('renter-profile-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Check if photo is uploaded
+            const photoUpload = document.getElementById('photo-upload');
+            if (!photoUpload.files || photoUpload.files.length === 0) {
+                alert('Please upload a profile photo.');
+                return;
+            }
+            
+            // Basic form validation
+            const requiredFields = this.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value) {
+                    isValid = false;
+                    field.style.borderColor = 'red';
+                } else {
+                    field.style.borderColor = '#ddd';
+                }
+            });
+            
+            if (isValid) {
+                // In a real application, you would send the data to a server here
+                alert('Profile created successfully! You will be redirected to your dashboard.');
+                // window.location.href = 'dashboard.html';
+            } else {
+                alert('Please fill in all required fields.');
+            }
+        });
+    </script>
+</body>
+</html>

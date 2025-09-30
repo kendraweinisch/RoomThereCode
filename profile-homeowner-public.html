@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homeowner Profile - RoomThere</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --navy-blue: #003366;
+            --kelly-green: #4CBB17;
+            --orange: #FF8C00;
+            --white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --dark-gray: #4A4A4A;
+            --text-dark: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--light-gray);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover, 
+        nav ul li a:focus {
+            color: var(--orange);
+            outline: 2px solid var(--orange);
+            outline-offset: 2px;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--white);
+        }
+        
+        /* Page Header */
+        .page-header {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 2rem 0;
+            position: relative;
+        }
+        
+        .page-header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .listing-price {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .listing-price small {
+            font-size: 1.2rem;
+            font-weight: normal;
+        }
+        
+        .verified-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--kelly-green);
+            color: var(--white);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Photo Carousel */
+        .photo-carousel {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+        
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 100%;
+        }
+        
+        .carousel-item {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ddd;
+            color: var(--dark-gray);
+            font-size: 1.5rem;
+        }
+        
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .carousel-control.prev {
+            left: 20px;
+        }
+        
+        .carousel-control.next {
+            right: 20px;
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .carousel-indicator.active {
+            background-color: var(--white);
+        }
+        
+        /* Profile Content */
+        .profile-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .profile-section {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .profile-section h2 {
+            color: var(--navy-blue);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--orange);
+        }
+        
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .detail-item {
+            margin-bottom: 1rem;
+        }
+        
+        .detail-item strong {
+            display: block;
+            color: var(--navy-blue);
+            margin-bottom: 0.25rem;
+        }
+        
+        .amenities-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .amenity-tag {
+            background-color: var(--light-gray);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .amenity-tag i {
+            color: var(--orange);
+        }
+        
+        /* Help Discount Section */
+        .help-discount-section {
+            background-color: rgba(76, 187, 23, 0.1);
+            border-left: 4px solid var(--kelly-green);
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin: 1.5rem 0;
+        }
+        
+        .help-discount-section h3 {
+            color: var(--kelly-green);
+            margin-bottom: 0.5rem;
+        }
+        
+        .discount-amount {
+            font-weight: 700;
+            color: var(--kelly-green);
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 20px;
+            text-align: center;
+        }
+        
+        .contact-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1rem;
+            border: 2px solid transparent;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: var(--orange);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover, 
+        .btn-primary:focus {
+            background-color: #e67e00;
+            transform: translateY(-2px);
+            outline: 2px solid var(--white);
+        }
+        
+        .btn-secondary {
+            background-color: var(--navy-blue);
+            color: var(--white);
+        }
+        
+        .btn-secondary:hover, 
+        .btn-secondary:focus {
+            background-color: #002244;
+            transform: translateY(-2px);
+            outline: 2px solid var(--orange);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--navy-blue);
+            border: 2px solid var(--navy-blue);
+        }
+        
+        .btn-outline:hover, 
+        .btn-outline:focus {
+            background-color: var(--navy-blue);
+            color: var(--white);
+        }
+        
+        .apply-btn {
+            width: 100%;
+            padding: 16px;
+            font-size: 1.2rem;
+            background-color: var(--kelly-green);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .apply-btn:hover, 
+        .apply-btn:focus {
+            background-color: #3da014;
+            transform: translateY(-2px);
+            outline: 2px solid var(--white);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 40px 0 20px;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover, .footer-links a:focus {
+            color: var(--orange);
+        }
+        
+        footer .logo {
+            color: var(--white);
+            font-size: 2rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        
+        footer .logo span {
+            color: var(--kelly-green);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        
+        .social-links a:hover, .social-links a:focus {
+            color: var(--orange);
+            background-color: rgba(255, 255, 255, 0.1);
+            outline: none;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        .notice {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .page-header-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .verified-badge {
+                position: static;
+                margin-top: 1rem;
+                align-self: flex-start;
+            }
+            
+            .photo-carousel {
+                height: 300px;
+            }
+            
+            .profile-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-section {
+                position: static;
+            }
+            
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .footer-links {
+                justify-content: center;
+            }
+        }
+        
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .carousel-inner {
+                transition: none;
+            }
+            
+            .btn-primary:hover, 
+            .btn-primary:focus,
+            .btn-secondary:hover, 
+            .btn-secondary:focus,
+            .btn-outline:hover, 
+            .btn-outline:focus,
+            .apply-btn:hover,
+            .apply-btn:focus {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">RoomThere</div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="listings.html">Browse Listings</a></li>
+                        <li><a href="renter-profile.html">Renter Profile</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu" aria-label="Toggle navigation menu">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="verified-badge">
+                <i class="fas fa-check-circle"></i>
+                Verified Homeowner
+            </div>
+            <div class="page-header-content">
+                <div>
+                    <h1>Private Room in North Park</h1>
+                    <p>Quiet residential neighborhood near SDSU</p>
+                </div>
+                <div class="listing-price">$850<small>/month</small></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Photo Carousel -->
+        <div class="photo-carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <i class="fas fa-home fa-5x"></i>
+                </div>
+                <div class="carousel-item">
+                    <i class="fas fa-bed fa-5x"></i>
+                </div>
+                <div class="carousel-item">
+                    <i class="fas fa-utensils fa-5x"></i>
+                </div>
+                <div class="carousel-item">
+                    <i class="fas fa-tree fa-5x"></i>
+                </div>
+            </div>
+            <button class="carousel-control prev" aria-label="Previous photo">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-control next" aria-label="Next photo">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="carousel-indicators">
+                <button class="carousel-indicator active" aria-label="Go to photo 1"></button>
+                <button class="carousel-indicator" aria-label="Go to photo 2"></button>
+                <button class="carousel-indicator" aria-label="Go to photo 3"></button>
+                <button class="carousel-indicator" aria-label="Go to photo 4"></button>
+            </div>
+        </div>
+
+        <!-- Profile Content -->
+        <div class="profile-content">
+            <div class="profile-main">
+                <!-- Home Description -->
+                <div class="profile-section">
+                    <h2>About This Home</h2>
+                    <p>Welcome to our comfortable home in the heart of North Park. This is a quiet, well-maintained house with a friendly atmosphere. The available room is spacious with plenty of natural light and closet space.</p>
+                    <p>We're located in a peaceful neighborhood that's just a short distance from SDSU, making it convenient for graduate students. The area has great access to public transportation, parks, and local shops.</p>
+                </div>
+
+                <!-- Room Details -->
+                <div class="profile-section">
+                    <h2>Room Details</h2>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <strong>Room Type</strong>
+                            <span>Private Bedroom</span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Bathroom</strong>
+                            <span>Shared Bathroom</span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Furnished</strong>
+                            <span>Yes - Bed, Desk, Chair, Dresser</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Amenities -->
+                <div class="profile-section">
+                    <h2>Home Amenities</h2>
+                    <div class="amenities-list">
+                        <div class="amenity-tag">
+                            <i class="fas fa-wifi"></i>
+                            <span>High-Speed Wi-Fi</span>
+                        </div>
+                        <div class="amenity-tag">
+                            <i class="fas fa-car"></i>
+                            <span>Street Parking</span>
+                        </div>
+                        <div class="amenity-tag">
+                            <i class="fas fa-thermometer-half"></i>
+                            <span>Central Air Conditioning</span>
+                        </div>
+                        <div class="amenity-tag">
+                            <i class="fas fa-tshirt"></i>
+                            <span>In-Unit Laundry</span>
+                        </div>
+                        <div class="amenity-tag">
+                            <i class="fas fa-utensils"></i>
+                            <span>Full Kitchen Access</span>
+                        </div>
+                        <div class="amenity-tag">
+                            <i class="fas fa-tv"></i>
+                            <span>Living Room with TV</span>
+                        </div>
+                        <div class="amenity-tag">
+                            <i class="fas fa-paw"></i>
+                            <span>Pet-Friendly (cats only)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Location -->
+                <div class="profile-section">
+                    <h2>Location & Neighborhood</h2>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <strong>Closest University</strong>
+                            <span>San Diego State University (SDSU)</span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Distance to Campus</strong>
+                            <span>1.2 miles (approx. 5-minute drive)</span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Public Transit</strong>
+                            <span>Bus stop 2 blocks away</span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Grocery Stores</strong>
+                            <span>Within walking distance</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Help Discount -->
+                <div class="help-discount-section">
+                    <h3>Rent Reduction Available for Light Help</h3>
+                    <p>We offer a <span class="discount-amount">$100 monthly discount</span> in exchange for assistance with grocery shopping once a week.</p>
+                    <p>The help would involve accompanying me to the grocery store and helping with carrying bags. This is typically a 1-2 hour commitment per week.</p>
+                </div>
+            </div>
+
+            <!-- Contact Sidebar -->
+            <div class="contact-sidebar">
+                <div class="contact-section">
+                    <h2>Apply to Rent This Room</h2>
+                    <p>Interested in this room? Click below to start the application process.</p>
+                    
+                    <div class="contact-actions">
+                        <button class="apply-btn">
+                            <i class="fas fa-home"></i> Apply to Rent Room
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">Room<span>There</span></div>
+                <div class="footer-links">
+                    <a href="#" id="footerContactLink">Contact Us</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61581306968087" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/roomthere" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="notice">
+                <p><strong>Important Notice:</strong> RoomThere facilitates connections between users only. All rental agreements, financial arrangements, and living terms are negotiated and managed directly between the homeowner and the renter. RoomThere is not a party to any agreements and does not provide legal or financial advice.</p>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 RoomThere. All rights reserved.</p>
+                <p>Creating safe, intergenerational housing solutions.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const nav = document.querySelector('nav ul');
+            nav.classList.toggle('show');
+            
+            // Update aria-expanded attribute
+            const isExpanded = nav.classList.contains('show');
+            this.setAttribute('aria-expanded', isExpanded);
+        });
+        
+        // Photo carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-item');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        const totalSlides = slides.length;
+        
+        function showSlide(index) {
+            // Ensure index is within bounds
+            if (index >= totalSlides) index = 0;
+            if (index < 0) index = totalSlides - 1;
+            
+            // Update current slide
+            currentSlide = index;
+            
+            // Move carousel
+            document.querySelector('.carousel-inner').style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update indicators
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('active', i === currentSlide);
+            });
+        }
+        
+        // Next/previous controls
+        document.querySelector('.carousel-control.next').addEventListener('click', () => {
+            showSlide(currentSlide + 1);
+        });
+        
+        document.querySelector('.carousel-control.prev').addEventListener('click', () => {
+            showSlide(currentSlide - 1);
+        });
+        
+        // Indicator controls
+        indicators.forEach((indicator, i) => {
+            indicator.addEventListener('click', () => {
+                showSlide(i);
+            });
+        });
+        
+        // Auto-advance carousel (optional)
+        setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, 5000);
+        
+        // Apply button functionality
+        document.querySelector('.apply-btn').addEventListener('click', function() {
+            alert('This would open the rental application form in a real application.');
+        });
+    </script>
+</body>
+</html>

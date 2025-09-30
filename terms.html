@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - RoomThere</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --navy-blue: #003366;
+            --kelly-green: #4CBB17;
+            --orange: #FF8C00;
+            --white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --dark-gray: #4A4A4A;
+            --text-dark: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--light-gray);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo a {
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--orange);
+        }
+        
+        /* Content Styles */
+        .content-section {
+            background-color: var(--white);
+            padding: 3rem 0;
+            min-height: 70vh;
+        }
+        
+        .terms-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .terms-content h1 {
+            color: var(--navy-blue);
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+        
+        .terms-content h2 {
+            color: var(--navy-blue);
+            margin: 2rem 0 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .terms-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .terms-content ul {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        .terms-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .last-updated {
+            color: var(--dark-gray);
+            font-style: italic;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .highlight-box {
+            background-color: #fff8e1;
+            border-left: 4px solid var(--orange);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-column h3 {
+            color: var(--orange);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--orange);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .notice {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo"><a href="index.html">RoomThere</a></div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#benefits">Benefits</a></li>
+                        <li><a href="index.html#how-it-works">How It Works</a></li>
+                        <li><a href="index.html#faq">FAQ</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Terms of Service Content -->
+    <section class="content-section">
+        <div class="container">
+            <div class="terms-content">
+                <h1>Terms of Service</h1>
+                <p class="last-updated">Last updated: January 2025</p>
+
+                <div class="highlight-box">
+                    <p><strong>Important:</strong> By using RoomThere, you acknowledge that we are a connection service only and not a party to any rental agreements or living arrangements.</p>
+                </div>
+
+                <h2>1. Acceptance of Terms</h2>
+                <p>By accessing or using RoomThere, you agree to be bound by these Terms of Service and our Privacy Policy.</p>
+
+                <h2>2. Service Description</h2>
+                <p>RoomThere is a platform that facilitates connections between:</p>
+                <ul>
+                    <li>Homeowners with extra living space</li>
+                    <li>Graduate students and young professionals seeking affordable housing</li>
+                </ul>
+                <p><strong>RoomThere is a connection service only.</strong> We do not participate in, nor are we responsible for, any rental agreements, financial transactions, or living arrangements between users.</p>
+
+                <h2>3. User Responsibilities</h2>
+                <p>As a RoomThere user, you agree to:</p>
+                <ul>
+                    <li>Provide accurate and complete information in your profile</li>
+                    <li>Use the platform in good faith and with respectful communication</li>
+                    <li>Conduct your own due diligence when considering potential matches</li>
+                    <li>Comply with all applicable laws and regulations</li>
+                </ul>
+
+                <h2>4. Background Checks</h2>
+                <p>RoomThere offers optional third-party background checks through accredited providers:</p>
+                <ul>
+                    <li>Background checks are voluntary and processed by third-party providers</li>
+                    <li>RoomThere does not conduct background checks directly</li>
+                    <li>Users are responsible for verifying the information provided by potential matches</li>
+                    <li>Completion of a background check does not guarantee compatibility or safety</li>
+                </ul>
+
+                <h2>5. Rental Agreements and Financial Arrangements</h2>
+                <p><strong>RoomThere is not a party to any rental agreements or financial arrangements.</strong> Users are solely responsible for:</p>
+                <ul>
+                    <li>Negotiating and executing rental agreements</li>
+                    <li>Establishing rent amounts and payment terms</li>
+                    <li>Defining house rules and expectations</li>
+                    <li>Complying with local landlord-tenant laws</li>
+                </ul>
+                <p>We recommend consulting with legal professionals when creating rental agreements.</p>
+
+                <h2>6. Prohibited Activities</h2>
+                <p>You may not use RoomThere to:</p>
+                <ul>
+                    <li>Harass, intimidate, or discriminate against other users</li>
+                    <li>Post false or misleading information</li>
+                    <li>Use the platform for any illegal purpose</li>
+                    <li>Attempt to gain unauthorized access to other users' accounts or information</li>
+                </ul>
+
+                <h2>7. Limitation of Liability</h2>
+                <p>RoomThere shall not be liable for any damages resulting from:</p>
+                <ul>
+                    <li>User interactions and agreements</li>
+                    <li>Inaccurate information provided by users</li>
+                    <li>Personal injury or property damage</li>
+                    <li>Financial losses related to rental arrangements</li>
+                </ul>
+
+                <h2>8. Termination</h2>
+                <p>We may suspend or terminate your access to RoomThere if you violate these Terms of Service or engage in behavior that threatens the safety of our community.</p>
+
+                <h2>9. Changes to Terms</h2>
+                <p>We may update these Terms of Service from time to time. Continued use of RoomThere after changes constitutes acceptance of the modified terms.</p>
+
+                <h2>10. Contact Information</h2>
+                <p>If you have any questions about these Terms of Service, please contact us at <a href="mailto:hello@roomthere.com">hello@roomthere.com</a>.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>RoomThere</h3>
+                    <p>Connecting generations through safe, affordable housing solutions.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html#benefits">Benefits</a></li>
+                        <li><a href="index.html#how-it-works">How It Works</a></li>
+                        <li><a href="index.html#faq">FAQ</a></li>
+                        <li><a href="mailto:hello@roomthere.com">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="notice">
+                <p><strong>Important Notice:</strong> RoomThere facilitates connections between users only. All rental agreements, financial arrangements, and living terms are negotiated and managed directly between the homeowner and the renter. RoomThere is not a party to any agreements and does not provide legal or financial advice.</p>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 RoomThere. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

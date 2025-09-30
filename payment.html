@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Verified - RoomThere</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --navy-blue: #003366;
+            --kelly-green: #4CBB17;
+            --orange: #FF8C00;
+            --white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --dark-gray: #4A4A4A;
+            --text-dark: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--light-gray);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--white);
+        }
+        
+        .logo span {
+            color: var(--kelly-green);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover, nav ul li a:focus {
+            color: var(--orange);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--white);
+        }
+        
+        /* Page Header */
+        .page-header {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Payment Section */
+        .payment-section {
+            padding: 3rem 0;
+            background-color: var(--white);
+            flex: 1;
+        }
+        
+        .payment-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .verification-process {
+            margin-bottom: 2rem;
+        }
+        
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: var(--navy-blue);
+            z-index: 1;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            flex: 1;
+        }
+        
+        .step-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--navy-blue);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .step.active .step-icon {
+            background-color: var(--kelly-green);
+        }
+        
+        .step-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .payment-details {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .payment-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .payment-row:last-child {
+            border-bottom: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--navy-blue);
+        }
+        
+        .info-box {
+            background-color: var(--white);
+            border-left: 4px solid var(--orange);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .info-box h3 {
+            color: var(--navy-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .external-service {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background-color: rgba(0, 51, 102, 0.05);
+            border-radius: 8px;
+        }
+        
+        .external-service i {
+            font-size: 2rem;
+            color: var(--navy-blue);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: var(--navy-blue);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover, .btn-primary:focus {
+            background-color: #002244;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: var(--orange);
+            color: var(--white);
+        }
+        
+        .btn-secondary:hover, .btn-secondary:focus {
+            background-color: #e67e00;
+            transform: translateY(-2px);
+        }
+        
+        .btn-tertiary {
+            background-color: var(--kelly-green);
+            color: var(--white);
+        }
+        
+        .btn-tertiary:hover, .btn-tertiary:focus {
+            background-color: #3da014;
+            transform: translateY(-2px);
+        }
+        
+        .payment-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2.5rem;
+        }
+        
+        /* Simple Footer */
+        footer {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 25px 0 15px;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        footer .logo {
+            color: var(--white);
+        }
+        
+        footer .logo span {
+            color: var(--kelly-green);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        
+        .social-links a:hover, .social-links a:focus {
+            color: var(--orange);
+            background-color: rgba(255, 255, 255, 0.1);
+            outline: none;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #ccc;
+            width: 100%;
+            margin-top: 15px;
+        }
+        
+        .disclaimer {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        /* Focus styles for all interactive elements */
+        a:focus, button:focus, input:focus, select:focus, textarea:focus {
+            outline: 2px solid var(--kelly-green);
+            outline-offset: 2px;
+        }
+        
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --navy-blue: #000080;
+                --kelly-green: #008000;
+                --orange: #FF4500;
+                --white: #FFFFFF;
+                --light-gray: #F0F0F0;
+                --dark-gray: #000000;
+                --text-dark: #000000;
+            }
+        }
+        
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .btn:hover, .btn:focus {
+                transform: none;
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                flex-direction: column;
+                display: none;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .process-steps::before {
+                display: none;
+            }
+            
+            .step {
+                flex-direction: row;
+                text-align: left;
+                gap: 15px;
+            }
+            
+            .payment-actions {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+        
+        /* Screen reader only class */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip link for keyboard users -->
+    <a href="#main-content" class="skip-link sr-only">Skip to main content</a>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo" aria-label="RoomThere Home">
+                    Room<span>There</span>
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="homeowner-profile.html" class="btn-secondary">List Your Room</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu" aria-label="Toggle navigation menu">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Get Verified on RoomThere</h1>
+            <p>Complete your background check to earn the Verified Badge and stand out to homeowners</p>
+        </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section class="payment-section">
+        <div class="container">
+            <div class="payment-container">
+                <div class="verification-process">
+                    <h2>Verification Process</h2>
+                    <p>Getting verified helps you build trust with homeowners and increases your chances of finding the perfect room.</p>
+                    
+                    <div class="process-steps">
+                        <div class="step active">
+                            <div class="step-icon">
+                                <i class="fas fa-credit-card" aria-hidden="true"></i>
+                            </div>
+                            <div class="step-text">Payment</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-icon">
+                                <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                            </div>
+                            <div class="step-text">Background Check</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-icon">
+                                <i class="fas fa-badge-check" aria-hidden="true"></i>
+                            </div>
+                            <div class="step-text">Get Verified</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <h3>Important Information</h3>
+                    <p>Your background check will be processed through our trusted partner <strong>Authenticate.com</strong>, a secure third-party verification service. RoomThere does not conduct background checks directly.</p>
+                </div>
+                
+                <div class="external-service">
+                    <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                    <div>
+                        <h3>Secure Third-Party Verification</h3>
+                        <p>You will be redirected to Authenticate.com to complete your background check. This ensures your personal information is handled securely by industry experts.</p>
+                    </div>
+                </div>
+                
+                <div class="payment-details">
+                    <h3>Payment Summary</h3>
+                    <div class="payment-row">
+                        <span>Background Check (Authenticate.com)</span>
+                        <span>$29.99</span>
+                    </div>
+                    <div class="payment-row">
+                        <span>RoomThere Processing Fee</span>
+                        <span>$20.00</span>
+                    </div>
+                    <div class="payment-row">
+                        <span>Total</span>
+                        <span>$49.99</span>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <h3>What Happens Next?</h3>
+                    <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                        <li style="margin-bottom: 0.5rem;">After payment, you'll be redirected to Authenticate.com to complete your background check</li>
+                        <li style="margin-bottom: 0.5rem;">RoomThere will receive a simple pass/not pass result - we do not see detailed reports</li>
+                        <li style="margin-bottom: 0.5rem;">If you pass, your Verified Badge will be automatically added to your profile</li>
+                        <li style="margin-bottom: 0.5rem;">The process typically takes 2-3 business days to complete</li>
+                    </ul>
+                </div>
+                
+                <div class="payment-actions">
+                    <a href="create-profile-renter.html" class="btn btn-secondary">Cancel</a>
+                    <a href="https://authenticate.com/roomthere-verification" class="btn btn-tertiary">Proceed to Payment & Verification</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">Room<span>There</span></div>
+                <div class="social-links">
+                    <a href="#" aria-label="Visit our Facebook page">
+                        <i class="fab fa-facebook" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" aria-label="Visit our Instagram page">
+                        <i class="fab fa-instagram" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="disclaimer">
+                <p><strong>Important Notice:</strong> RoomThere facilitates connections between users only. All rental agreements, financial arrangements, and living terms are negotiated and managed directly between the homeowner and the renter. RoomThere is not a party to any agreements and does not provide legal or financial advice.</p>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 RoomThere. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+        
+        // Add focus styles for keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
+        });
+        
+        document.addEventListener('mousedown', function() {
+            document.body.classList.remove('keyboard-navigation');
+        });
+        
+        // Simple confirmation for proceeding to payment
+        document.querySelector('.btn-tertiary').addEventListener('click', function(e) {
+            if (!confirm('You will be redirected to Authenticate.com to complete your background check. Do you want to proceed?')) {
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>

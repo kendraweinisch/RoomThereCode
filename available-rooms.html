@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Rooms - RoomThere</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --navy-blue: #003366;
+            --kelly-green: #4CBB17;
+            --orange: #FF8C00;
+            --white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --dark-gray: #4A4A4A;
+            --text-dark: #333333;
+            --medium-gray: #767676;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--light-gray);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover, 
+        nav ul li a:focus {
+            color: var(--orange);
+            outline: 2px solid var(--orange);
+            outline-offset: 2px;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--white);
+        }
+        
+        /* Page Header */
+        .page-header {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Filters Section */
+        .filters {
+            padding: 2rem 0;
+            background-color: var(--white);
+        }
+        
+        .filter-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .filter-group label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--navy-blue);
+        }
+        
+        .filter-group select, 
+        .filter-group input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            min-width: 150px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1rem;
+            border: 2px solid transparent;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: var(--orange);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover, 
+        .btn-primary:focus {
+            background-color: #e67e00;
+            transform: translateY(-2px);
+            outline: 2px solid var(--white);
+        }
+        
+        .btn-secondary {
+            background-color: var(--navy-blue);
+            color: var(--white);
+        }
+        
+        .btn-secondary:hover, 
+        .btn-secondary:focus {
+            background-color: #002244;
+            transform: translateY(-2px);
+            outline: 2px solid var(--orange);
+        }
+        
+        /* Listings Section */
+        .listings {
+            padding: 3rem 0;
+            flex: 1;
+        }
+        
+        .listings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .listings-count {
+            color: var(--navy-blue);
+            font-weight: 600;
+        }
+        
+        .listings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .listing-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .listing-card:hover, 
+        .listing-card:focus-within {
+            transform: translateY(-5px);
+        }
+        
+        .listing-image {
+            height: 200px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-gray);
+            font-size: 1.2rem;
+        }
+        
+        .listing-content {
+            padding: 1.5rem;
+        }
+        
+        .listing-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--navy-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        .listing-price small {
+            font-size: 1rem;
+            font-weight: normal;
+            color: var(--dark-gray);
+        }
+        
+        .listing-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--navy-blue);
+        }
+        
+        .listing-details {
+            margin-bottom: 1.5rem;
+        }
+        
+        .listing-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .listing-detail i {
+            width: 20px;
+            color: var(--orange);
+            margin-right: 10px;
+        }
+        
+        .help-discount {
+            background-color: rgba(76, 187, 23, 0.1);
+            border-left: 4px solid var(--kelly-green);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .help-discount h4 {
+            color: var(--kelly-green);
+            margin-bottom: 0.5rem;
+        }
+        
+        .discount-amount {
+            font-weight: 700;
+            color: var(--kelly-green);
+        }
+        
+        .listing-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            margin: auto;
+        }
+        
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--medium-gray);
+        }
+        
+        .close:hover {
+            color: var(--navy-blue);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+        
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--navy-blue);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.2);
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 40px 0 20px;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover, .footer-links a:focus {
+            color: var(--orange);
+        }
+        
+        footer .logo {
+            color: var(--white);
+            font-size: 2rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        
+        footer .logo span {
+            color: var(--kelly-green);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        
+        .social-links a:hover, .social-links a:focus {
+            color: var(--orange);
+            background-color: rgba(255, 255, 255, 0.1);
+            outline: none;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        .notice {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .filter-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filter-group {
+                width: 100%;
+            }
+            
+            .listings-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .listing-actions {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .listing-actions .btn {
+                width: 100%;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .footer-links {
+                justify-content: center;
+            }
+        }
+        
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .listing-card:hover, 
+            .listing-card:focus-within {
+                transform: none;
+            }
+            
+            .btn-primary:hover, 
+            .btn-primary:focus,
+            .btn-secondary:hover, 
+            .btn-secondary:focus {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">RoomThere</div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="listings.html" class="btn-primary">Browse Listings</a></li>
+                        <li><a href="renter-profile.html">Renter Profile</a></li>
+                        <li><a href="homeowner-profile.html">List Your Room</a></li>
+                        <li><a href="#" id="navContactLink">Contact Us</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu" aria-label="Toggle navigation menu">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Available Rooms</h1>
+            <p>Find your perfect match from our curated selection of rooms near universities.</p>
+        </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters">
+        <div class="container">
+            <div class="filter-container">
+                <div class="filter-group">
+                    <label for="university">Closest University</label>
+                    <select id="university">
+                        <option value="">All Universities</option>
+                        <option value="SDSU">San Diego State University</option>
+                        <option value="UCSD">University of California, San Diego</option>
+                        <option value="USD">University of San Diego</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="max-price">Max Monthly Rent</label>
+                    <select id="max-price">
+                        <option value="">Any Price</option>
+                        <option value="500">$500</option>
+                        <option value="750">$750</option>
+                        <option value="1000">$1,000</option>
+                        <option value="1250">$1,250</option>
+                        <option value="1500">$1,500</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="distance">Max Distance</label>
+                    <select id="distance">
+                        <option value="">Any Distance</option>
+                        <option value="walking">Walking Distance</option>
+                        <option value="short-drive">Short Drive</option>
+                        <option value="medium-drive">Medium Drive</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="help-discount">Help Discount</label>
+                    <select id="help-discount">
+                        <option value="">Any Listing</option>
+                        <option value="yes">With Help Discount</option>
+                        <option value="no">Without Help Discount</option>
+                    </select>
+                </div>
+                
+                <button class="btn btn-primary" style="align-self: flex-end;">Apply Filters</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Listings Section -->
+    <section class="listings">
+        <div class="container">
+            <div class="listings-header">
+                <h2>Available Rooms</h2>
+                <div class="listings-count">Showing 8 listings</div>
+            </div>
+            
+            <div class="listings-grid">
+                <!-- Listing 1 -->
+                <div class="listing-card" tabindex="0">
+                    <div class="listing-image">
+                        <i class="fas fa-home fa-3x"></i>
+                    </div>
+                    <div class="listing-content">
+                        <div class="listing-price">$850<small>/month</small></div>
+                        <h3 class="listing-title">Private Room in North Park</h3>
+                        
+                        <div class="listing-details">
+                            <div class="listing-detail">
+                                <i class="fas fa-university"></i>
+                                <span>1.2 miles to SDSU</span>
+                            </div>
+                            <div class="listing-detail">
+                                <i class="fas fa-bed"></i>
+                                <span>Private bedroom, shared bath</span>
+                            </div>
+                            <div class="listing-detail">
+                                <i class="fas fa-car"></i>
+                                <span>Street parking available</span>
+                            </div>
+                        </div>
+                        
+                        <div class="help-discount">
+                            <h4>Help Discount Available</h4>
+                            <p><span class="discount-amount">$100 discount</span> for light help with grocery shopping</p>
+                        </div>
+                        
+                        <div class="listing-actions">
+                            <button class="btn btn-secondary">Save for Later</button>
+                            <button class="btn btn-primary">View Profile</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Listing 2 -->
+                <div class="listing-card" tabindex="0">
+                    <div class="listing-image">
+                        <i class="fas fa-home fa-3x"></i>
+                    </div>
+                    <div class="listing-content">
+                        <div class="listing-price">$950<small>/month</small></div>
+                        <h3 class="listing-title">Studio Unit in La Jolla</h3>
+                        
+                        <div class="listing-details">
+                            <div class="listing-detail">
+                                <i class="fas fa-university"></i>
+                                <span>0.8 miles to UCSD</span>
+                            </div>
+                            <div class="listing-detail">
+                                <i class="fas fa-bed"></i>
+                                <span>Private studio with kitchenette</span>
+                            </div>
+                            <div class="listing-detail">
+                                <i class="fas fa-car"></i>
+                                <span>Dedicated parking space</span>
+                            </div>
+                        </div>
+                        
+                        <div class="help-discount">
+                            <h4>Help Discount Available</h4>
+                            <p><span class="discount-amount">$150 discount</span> for technology assistance</p>
+                        </div>
+                        
+                        <div class="listing-actions">
+                            <button class="btn btn-secondary">Save for Later</button>
+                            <button class="btn btn-primary">View Profile</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Listing 3 -->
+                <div class="listing-card" tabindex="0">
+                    <div class="listing-image">
+                        <i class="fas fa-home fa-3x"></i>
+                    </div>
+                    <div class="listing-content">
+                        <div class="listing-price">$700<small>/month</small></div>
+                        <h3 class="listing-title">Cozy Room in Normal Heights</h3>
+                        
+                        <div class="listing-details">
+                            <div class="listing-detail">
+                                <i class="fas fa-university"></i>
+                                <span>2.5 miles to SDSU</span>
+                            </div>
+                            <div class="listing-detail">
+                                <i class="fas fa-bed"></i>
+                                <span>Private bedroom, shared bath</span>
+                            </div>
+                            <div class="listing-detail">
+                                <i class="fas fa-car"></i>
+                                <span>Street parking available</span>
+                            </div>
+                        </div>
+                        
+                        <div class="help-discount">
+                            <h4>Help Discount Available</h4>
+                            <p><span class="discount-amount">$75 discount</span> for pet care assistance</p>
+                        </div>
+                        
+                        <div class="listing-actions">
+                            <button class="btn btn-secondary">Save for Later</button>
+                            <button class="btn btn-primary">View Profile</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Listing 4 -->
+                <div class="listing-card" tabindex="0">
+                    <div class="listing-image">
+                        <i class="fas fa-home fa-3x"></i>
+                    </div>
+                    <div class="listing-content">
+                        <div class="listing-price">$1,100<small>/month</small></div>
+                        <h3 class="listing-title">Spacious Room in Mission Valley</h3>
+                        
+                        <div class="listing-details">
+                            <div class="listing-detail">
+                                <i class="fas fa-university"></i>
+                                <span>3.2 miles to USD</span>
+                            </div>
+                            <div class="listing-detail">
+                                <i class="fas fa-bed"></i>
+                                <span>Private bedroom with ensuite bath</span>
+                            </div>
+                            <div class="listing-detail">
+                                <i class="fas fa-car"></i>
+                                <span>Garage parking included</span>
+                            </div>
+                        </div>
+                        
+                        <!-- No help discount for this listing -->
+                        
+                        <div class="listing-actions">
+                            <button class="btn btn-secondary">Save for Later</button>
+                            <button class="btn btn-primary">View Profile</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Listing 5 -->
+                <div class="listing-card" tabindex="0">
+                    <div class="listing-image">
+                        <i class="fas fa-home fa-3x"></i>
+                    </div>
+                    <div class="listing-content">
+                        <div class="listing-price">$800<small>/month</small></div>
+                        <h3 class="listing-title">Bright Room in Hillcrest</h3>
+                        
+                        <div class="listing-details">
+                            <div class="listing-detail">
+                                <i class="fas fa-university"></i>
+                                <span>4.1 miles to UCSD</span>
+                            </div>
+                            <div class="listing-detail">
+                                <i class="fas fa-bed"></i>
+                                <span>Private bedroom, shared bath</span>
+                            </div>
+                            <div class="listing-detail">
+                                <i class="fas fa-car"></i>
+                                <span>Permit parking available</span>
+                            </div>
+                        </div>
+                        
+                        <div class="help-discount">
+                            <h4>Help Discount Available</h4>
+                            <p><span class="discount-amount">$120 discount</span> for yard work and plant care</p>
+                        </div>
+                        
+                        <div class="listing-actions">
+                            <button class="btn btn-secondary">Save for Later</button>
+                            <button class="btn btn-primary">View Profile</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Listing 6 -->
+                <div class="listing-card" tabindex="0">
+                    <div class="listing-image">
+                        <i class="fas fa-home fa-3x"></i>
+                    </div>
+                    <div class="listing-content">
+                        <div class="listing-price">$650<small>/month</small></div>
+                        <h3 class="listing-title">Affordable Room in City Heights</h3>
+                        
+                        <div class="listing-details">
+                            <div class="listing-detail">
+                                <i class="fas fa-university"></i>
+                                <span>1.8 miles to SDSU</span>
+                            </div>
+                            <div class="listing-detail">
+                                <i class="fas fa-bed"></i>
+                                <span>Private bedroom, shared bath</span>
+                            </div>
+                            <div class="listing-detail">
+                                <i class="fas fa-car"></i>
+                                <span>Street parking available</span>
+                            </div>
+                        </div>
+                        
+                        <div class="help-discount">
+                            <h4>Help Discount Available</h4>
+                            <p><span class="discount-amount">$50 discount</span> for occasional transportation</p>
+                        </div>
+                        
+                        <div class="listing-actions">
+                            <button class="btn btn-secondary">Save for Later</button>
+                            <button class="btn btn-primary">View Profile</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">Room<span>There</span></div>
+                <div class="footer-links">
+                    <a href="#" id="footerContactLink">Contact Us</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61581306968087" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/roomthere" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 RoomThere. All rights reserved.</p>
+                <p>Creating safe, intergenerational housing solutions.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Contact Us Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Contact RoomThere</h2>
+            <form id="contactModalForm">
+                <div class="form-group">
+                    <label for="modal-name">Name *</label>
+                    <input type="text" id="modal-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-email">Email Address *</label>
+                    <input type="email" id="modal-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-phone">Phone Number (Optional)</label>
+                    <input type="tel" id="modal-phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="modal-message">Message *</label>
+                    <textarea id="modal-message" name="message" required placeholder="How can we help you?"></textarea>
+                </div>
+                <button type="submit" class="btn btn-secondary">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenu = document.querySelector('.mobile-menu');
+            if (mobileMenu) {
+                mobileMenu.addEventListener('click', function() {
+                    const nav = document.querySelector('nav ul');
+                    nav.classList.toggle('show');
+                    
+                    // Update aria-expanded attribute
+                    const isExpanded = nav.classList.contains('show');
+                    this.setAttribute('aria-expanded', isExpanded);
+                });
+            }
+            
+            // View Profile button functionality
+            document.querySelectorAll('.btn-primary').forEach(button => {
+                if (button.textContent === 'View Profile') {
+                    button.addEventListener('click', function() {
+                        // In a real application, this would navigate to the owner's profile page
+                        alert('This would navigate to the homeowner\'s public profile page in a real application.');
+                    });
+                }
+            });
+            
+            // Save for Later button functionality
+            document.querySelectorAll('.btn-secondary').forEach(button => {
+                if (button.textContent === 'Save for Later') {
+                    button.addEventListener('click', function() {
+                        const card = this.closest('.listing-card');
+                        const title = card.querySelector('.listing-title').textContent;
+                        
+                        // Toggle saved state
+                        if (this.textContent === 'Save for Later') {
+                            this.textContent = 'Saved';
+                            this.style.backgroundColor = 'var(--kelly-green)';
+                            alert(`Added "${title}" to your saved listings.`);
+                        } else {
+                            this.textContent = 'Save for Later';
+                            this.style.backgroundColor = 'var(--navy-blue)';
+                            alert(`Removed "${title}" from your saved listings.`);
+                        }
+                    });
+                }
+            });
+            
+            // Filter functionality (basic implementation)
+            const applyFiltersBtn = document.querySelector('.btn-primary');
+            if (applyFiltersBtn && applyFiltersBtn.textContent === 'Apply Filters') {
+                applyFiltersBtn.addEventListener('click', function() {
+                    alert('Filters would be applied in a real application. This is a demo.');
+                });
+            }
+
+            // Contact Us Modal Functionality
+            const contactModal = document.getElementById('contactModal');
+            const contactModalForm = document.getElementById('contactModalForm');
+            const closeModal = document.querySelector('.close');
+            const footerContactLink = document.getElementById('footerContactLink');
+            const navContactLink = document.getElementById('navContactLink');
+
+            // Check if elements exist
+            if (!contactModal || !contactModalForm || !closeModal || !footerContactLink || !navContactLink) {
+                console.error('One or more Contact Us modal elements not found');
+                return;
+            }
+
+            // Function to open modal
+            function openContactModal() {
+                contactModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                document.getElementById('modal-name').focus();
+            }
+
+            // Function to close modal
+            function closeContactModal() {
+                contactModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                contactModalForm.reset();
+            }
+
+            // Close modal when clicking X
+            closeModal.addEventListener('click', closeContactModal);
+
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target === contactModal) {
+                    closeContactModal();
+                }
+            });
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && contactModal.style.display === 'flex') {
+                    closeContactModal();
+                }
+            });
+
+            // Handle form submission
+            contactModalForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('modal-name').value;
+                const email = document.getElementById('modal-email').value;
+                const phone = document.getElementById('modal-phone').value;
+                const message = document.getElementById('modal-message').value;
+                
+                // Show confirmation (in real app, send to server)
+                alert(`Thank you, ${name}! Your message has been sent. We'll contact you at ${email} soon.`);
+                
+                // Close modal
+                closeContactModal();
+            });
+
+            // Make the Contact Us links work
+            footerContactLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                openContactModal();
+            });
+
+            navContactLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                openContactModal();
+            });
+
+            console.log('All functionality loaded successfully');
+        });
+    </script>
+</body>
+</html>

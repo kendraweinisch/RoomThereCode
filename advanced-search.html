@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Search - RoomThere</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --navy-blue: #003366;
+            --kelly-green: #4CBB17;
+            --orange: #FF8C00;
+            --white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --dark-gray: #4A4A4A;
+            --text-dark: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--light-gray);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--white);
+        }
+        
+        .logo span {
+            color: var(--kelly-green);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--orange);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--white);
+        }
+        
+        /* Search Page Styles */
+        .search-page {
+            padding: 2rem 0;
+            flex: 1;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .page-header h1 {
+            color: var(--navy-blue);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .page-header p {
+            color: var(--dark-gray);
+            font-size: 1.1rem;
+        }
+        
+        .search-container {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 2rem;
+        }
+        
+        /* Filters Sidebar */
+        .filters-sidebar {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+            position: sticky;
+            top: 2rem;
+        }
+        
+        .filter-section {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .filter-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .filter-section h3 {
+            color: var(--navy-blue);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .reset-filter {
+            background: none;
+            border: none;
+            color: var(--orange);
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        
+        .price-range {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .price-input {
+            flex: 1;
+        }
+        
+        .price-input label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-bottom: 0.25rem;
+        }
+        
+        .price-input input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .checkbox-item input {
+            width: 18px;
+            height: 18px;
+        }
+        
+        .checkbox-item label {
+            font-size: 0.95rem;
+        }
+        
+        .verification-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            background: var(--kelly-green);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+        }
+        
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+        
+        .location-search {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+        
+        .location-search input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding-left: 2.5rem;
+        }
+        
+        .location-search i {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--dark-gray);
+        }
+        
+        .radius-select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: white;
+        }
+        
+        .filter-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            flex: 1;
+        }
+        
+        .btn-primary {
+            background-color: var(--orange);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: #e67e00;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--navy-blue);
+            border: 2px solid var(--navy-blue);
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(0, 51, 102, 0.05);
+        }
+        
+        /* Results Section */
+        .results-section {
+            flex: 1;
+        }
+        
+        .results-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .results-count {
+            color: var(--dark-gray);
+            font-size: 1.1rem;
+        }
+        
+        .sort-options {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .sort-options select {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: white;
+        }
+        
+        .view-options {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .view-btn {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            color: var(--dark-gray);
+        }
+        
+        .view-btn.active {
+            background: var(--navy-blue);
+            color: white;
+            border-color: var(--navy-blue);
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .result-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .result-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-image {
+            height: 200px;
+            background: #ddd;
+            position: relative;
+        }
+        
+        .card-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--orange);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .card-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--navy-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        .card-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--dark-gray);
+        }
+        
+        .card-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+        
+        .card-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .card-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            color: var(--dark-gray);
+        }
+        
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .homeowner-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #ddd;
+        }
+        
+        .homeowner-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .verification-icon {
+            color: var(--kelly-green);
+        }
+        
+        .card-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .icon-btn {
+            background: none;
+            border: none;
+            color: var(--dark-gray);
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        .icon-btn:hover {
+            color: var(--orange);
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .no-results i {
+            font-size: 3rem;
+            color: #ddd;
+            margin-bottom: 1rem;
+        }
+        
+        .no-results h3 {
+            color: var(--navy-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        .no-results p {
+            color: var(--dark-gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Simple Footer */
+        footer {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 25px 0 15px;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        footer .logo {
+            color: var(--white);
+        }
+        
+        footer .logo span {
+            color: var(--kelly-green);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        
+        .social-links a:hover, .social-links a:focus {
+            color: var(--orange);
+            background-color: rgba(255, 255, 255, 0.1);
+            outline: none;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #ccc;
+            width: 100%;
+            margin-top: 15px;
+        }
+        
+        .disclaimer {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        /* Focus styles for all interactive elements */
+        a:focus, button:focus, input:focus, select:focus, textarea:focus {
+            outline: 2px solid var(--kelly-green);
+            outline-offset: 2px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .search-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .filters-sidebar {
+                position: static;
+            }
+            
+            .results-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                flex-direction: column;
+                display: none;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .amenities-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .results-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .sort-options {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo" aria-label="RoomThere Home">
+                    Room<span>There</span>
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="browse-rooms.html">Browse Rooms</a></li>
+                        <li><a href="how-it-works.html">How It Works</a></li>
+                        <li><a href="safety.html">Safety</a></li>
+                        <li><a href="login.html" class="btn-primary">Sign In</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu" aria-label="Toggle navigation menu">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Page Content -->
+    <section class="search-page">
+        <div class="container">
+            <div class="page-header">
+                <h1>Find Your Perfect Room</h1>
+                <p>Use our advanced filters to find rooms that match your preferences and lifestyle</p>
+            </div>
+            
+            <div class="search-container">
+                <!-- Filters Sidebar -->
+                <div class="filters-sidebar">
+                    <div class="filter-section">
+                        <h3>
+                            Location
+                            <button class="reset-filter">Reset</button>
+                        </h3>
+                        <div class="location-search">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="City, neighborhood, or ZIP code">
+                        </div>
+                        <select class="radius-select">
+                            <option value="">Search radius</option>
+                            <option value="1">Within 1 mile</option>
+                            <option value="5">Within 5 miles</option>
+                            <option value="10">Within 10 miles</option>
+                            <option value="25">Within 25 miles</option>
+                            <option value="50">Within 50 miles</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-section">
+                        <h3>
+                            Price Range
+                            <button class="reset-filter">Reset</button>
+                        </h3>
+                        <div class="price-range">
+                            <div class="price-input">
+                                <label for="min-price">Min</label>
+                                <input type="number" id="min-price" placeholder="$0">
+                            </div>
+                            <div class="price-input">
+                                <label for="max-price">Max</label>
+                                <input type="number" id="max-price" placeholder="$2000">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-section">
+                        <h3>
+                            Room Type
+                            <button class="reset-filter">Reset</button>
+                        </h3>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="private-room">
+                                <label for="private-room">Private Room</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="studio">
+                                <label for="studio">Studio/Private Unit</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-section">
+                        <h3>
+                            Homeowner Preferences
+                            <button class="reset-filter">Reset</button>
+                        </h3>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="light-help">
+                                <label for="light-help">Open to Light Help Arrangement</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="pet-friendly">
+                                <label for="pet-friendly">Pet-Friendly Household</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="non-smoking">
+                                <label for="non-smoking">Non-Smoking Household</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-section">
+                        <h3>
+                            Amenities
+                            <button class="reset-filter">Reset</button>
+                        </h3>
+                        <div class="amenities-grid">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="private-bath">
+                                <label for="private-bath">Private Bathroom</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="kitchen-access">
+                                <label for="kitchen-access">Kitchen Access</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="laundry">
+                                <label for="laundry">Laundry Facilities</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="parking">
+                                <label for="parking">Parking</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="furnished">
+                                <label for="furnished">Furnished</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="wifi">
+                                <label for="wifi">WiFi Included</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-section">
+                        <h3>
+                            Safety & Verification
+                            <button class="reset-filter">Reset</button>
+                        </h3>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="background-check">
+                                <label for="background-check">
+                                    Background Verified Owner
+                                    <span class="verification-badge">Recommended</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-actions">
+                        <button class="btn btn-secondary">Clear All</button>
+                        <button class="btn btn-primary">Apply Filters</button>
+                    </div>
+                </div>
+                
+                <!-- Results Section -->
+                <div class="results-section">
+                    <div class="results-header">
+                        <div class="results-count">
+                            <strong>12</strong> rooms match your criteria
+                        </div>
+                        <div class="sort-options">
+                            <span>Sort by:</span>
+                            <select>
+                                <option>Recommended</option>
+                                <option>Price: Low to High</option>
+                                <option>Price: High to Low</option>
+                                <option>Newest First</option>
+                                <option>Closest Distance</option>
+                            </select>
+                            <div class="view-options">
+                                <button class="view-btn active" title="Grid view">
+                                    <i class="fas fa-th"></i>
+                                </button>
+                                <button class="view-btn" title="List view">
+                                    <i class="fas fa-list"></i>
+                                </button>
+                                <button class="view-btn" title="Map view">
+                                    <i class="fas fa-map"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="results-grid">
+                        <!-- Room Card 1 -->
+                        <div class="result-card">
+                            <div class="card-image">
+                                <div class="card-badge">Reduced Rent Available</div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-price">$850<span>/month</span></div>
+                                <h3 class="card-title">Spacious Room in Quiet Neighborhood</h3>
+                                <div class="card-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>North Park, San Diego</span>
+                                </div>
+                                <div class="card-features">
+                                    <div class="feature">
+                                        <i class="fas fa-bed"></i>
+                                        <span>Private Room</span>
+                                    </div>
+                                    <div class="feature">
+                                        <i class="fas fa-bath"></i>
+                                        <span>Shared Bath</span>
+                                    </div>
+                                    <div class="feature">
+                                        <i class="fas fa-ruler-combined"></i>
+                                        <span>220 sq ft</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="homeowner-info">
+                                        <div class="avatar"></div>
+                                        <div>
+                                            <div class="homeowner-name">Margaret, 72</div>
+                                            <div>
+                                                <i class="fas fa-check-circle verification-icon"></i>
+                                                <small>Background Verified</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-actions">
+                                        <button class="icon-btn" title="Save to favorites">
+                                            <i class="far fa-heart"></i>
+                                        </button>
+                                        <button class="icon-btn" title="View details">
+                                            <i class="fas fa-external-link-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Room Card 2 -->
+                        <div class="result-card">
+                            <div class="card-image">
+                                <div class="card-badge">Light Help Welcome</div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-price">$950<span>/month</span></div>
+                                <h3 class="card-title">Bright Room with Garden View</h3>
+                                <div class="card-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>La Jolla, San Diego</span>
+                                </div>
+                                <div class="card-features">
+                                    <div class="feature">
+                                        <i class="fas fa-bed"></i>
+                                        <span>Private Room</span>
+                                    </div>
+                                    <div class="feature">
+                                        <i class="fas fa-bath"></i>
+                                        <span>Private Bath</span>
+                                    </div>
+                                    <div class="feature">
+                                        <i class="fas fa-ruler-combined"></i>
+                                        <span>180 sq ft</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="homeowner-info">
+                                        <div class="avatar"></div>
+                                        <div>
+                                            <div class="homeowner-name">Robert, 68</div>
+                                            <div>
+                                                <i class="fas fa-check-circle verification-icon"></i>
+                                                <small>Background Verified</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-actions">
+                                        <button class="icon-btn" title="Save to favorites">
+                                            <i class="far fa-heart"></i>
+                                        </button>
+                                        <button class="icon-btn" title="View details">
+                                            <i class="fas fa-external-link-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Room Card 3 -->
+                        <div class="result-card">
+                            <div class="card-image">
+                                <div class="card-badge">Utilities Included</div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-price">$750<span>/month</span></div>
+                                <h3 class="card-title">Cozy Room Near University</h3>
+                                <div class="card-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>College Area, San Diego</span>
+                                </div>
+                                <div class="card-features">
+                                    <div class="feature">
+                                        <i class="fas fa-bed"></i>
+                                        <span>Private Room</span>
+                                    </div>
+                                    <div class="feature">
+                                        <i class="fas fa-bath"></i>
+                                        <span>Shared Bath</span>
+                                    </div>
+                                    <div class="feature">
+                                        <i class="fas fa-ruler-combined"></i>
+                                        <span>150 sq ft</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="homeowner-info">
+                                        <div class="avatar"></div>
+                                        <div>
+                                            <div class="homeowner-name">Eleanor, 75</div>
+                                            <div>
+                                                <i class="fas fa-check-circle verification-icon"></i>
+                                                <small>Background Verified</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-actions">
+                                        <button class="icon-btn" title="Save to favorites">
+                                            <i class="far fa-heart"></i>
+                                        </button>
+                                        <button class="icon-btn" title="View details">
+                                            <i class="fas fa-external-link-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">Room<span>There</span></div>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61581306968087" aria-label="Visit our Facebook page">
+                        <i class="fab fa-facebook" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.instagram.com/roomthere?igsh=N2Qzajk5a3d5aWpq&utm_source=qr" aria-label="Visit our Instagram page">
+                        <i class="fab fa-instagram" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="disclaimer">
+                <p><strong>Important Notice:</strong> RoomThere facilitates connections between users only. All rental agreements, financial arrangements, and living terms are negotiated and managed directly between the homeowner and the renter. RoomThere is not a party to any agreements and does not provide legal or financial advice.</p>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 RoomThere. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+        
+        // Filter functionality
+        document.querySelectorAll('.reset-filter').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const section = this.closest('.filter-section');
+                section.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                section.querySelectorAll('input[type="number"]').forEach(input => {
+                    input.value = '';
+                });
+                section.querySelectorAll('select').forEach(select => {
+                    select.selectedIndex = 0;
+                });
+            });
+        });
+        
+        // Clear All button
+        document.querySelector('.btn-secondary').addEventListener('click', function() {
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            document.querySelectorAll('input[type="number"]').forEach(input => {
+                input.value = '';
+            });
+            document.querySelectorAll('select').forEach(select => {
+                select.selectedIndex = 0;
+            });
+        });
+        
+        // View toggle
+        document.querySelectorAll('.view-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.view-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // In a real implementation, this would change the view
+                // For now, we'll just show an alert
+                if (this.querySelector('.fa-map')) {
+                    alert('Map view would be displayed here in a full implementation.');
+                } else if (this.querySelector('.fa-list')) {
+                    alert('List view would be displayed here in a full implementation.');
+                }
+            });
+        });
+        
+        // Favorite button toggle
+        document.querySelectorAll('.icon-btn .fa-heart').forEach(heart => {
+            heart.addEventListener('click', function() {
+                if (this.classList.contains('far')) {
+                    this.classList.remove('far');
+                    this.classList.add('fas');
+                    this.style.color = 'var(--orange)';
+                } else {
+                    this.classList.remove('fas');
+                    this.classList.add('far');
+                    this.style.color = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

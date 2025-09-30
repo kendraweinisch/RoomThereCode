@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages - RoomThere</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Color Scheme */
+        :root {
+            --navy-blue: #003366;
+            --kelly-green: #4CBB17;
+            --orange: #FF8C00;
+            --white: #FFFFFF;
+            --light-gray: #F8F8F8;
+            --dark-gray: #333333;
+            --medium-gray: #767676;
+            --message-sent: #E3F2FD;
+            --message-received: #F5F5F5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Skip link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--navy-blue);
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            text-decoration: none;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--navy-blue);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--kelly-green);
+        }
+        
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--navy-blue);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+        
+        .logout-link {
+            color: var(--navy-blue);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .logout-link:hover, .logout-link:focus {
+            background: var(--light-gray);
+        }
+        
+        /* Messaging Layout */
+        .messaging-container {
+            display: flex;
+            flex: 1;
+            margin: 30px 0;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            height: calc(100vh - 200px);
+            min-height: 600px;
+        }
+        
+        /* Conversations Sidebar */
+        .conversations-sidebar {
+            width: 350px;
+            border-right: 1px solid #eaeaea;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .conversations-header {
+            padding: 20px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .conversations-header h2 {
+            font-size: 1.5rem;
+            color: var(--navy-blue);
+            margin-bottom: 15px;
+        }
+        
+        .search-conversations {
+            position: relative;
+        }
+        
+        .search-conversations input {
+            width: 100%;
+            padding: 12px 40px 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .search-conversations input:focus {
+            border-color: var(--navy-blue);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.2);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--medium-gray);
+        }
+        
+        .conversations-list {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            text-align: center;
+            color: var(--medium-gray);
+        }
+        
+        .empty-conversations-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+        
+        .empty-conversations-text h3 {
+            font-size: 1.5rem;
+            color: var(--navy-blue);
+            margin-bottom: 10px;
+        }
+        
+        .empty-conversations-text p {
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: var(--navy-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover, .btn:focus {
+            background: #002244;
+            transform: translateY(-2px);
+            outline: 2px solid var(--kelly-green);
+            outline-offset: 2px;
+        }
+        
+        /* Chat Area */
+        .chat-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .empty-chat-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            padding: 40px;
+            color: var(--medium-gray);
+        }
+        
+        .empty-chat-icon {
+            font-size: 6rem;
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+        
+        .empty-chat-text h3 {
+            font-size: 1.8rem;
+            color: var(--navy-blue);
+            margin-bottom: 15px;
+        }
+        
+        .empty-chat-text p {
+            max-width: 500px;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer Styles - Updated to match available-rooms.html */
+        footer {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 40px 0 20px;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover, .footer-links a:focus {
+            color: var(--orange);
+        }
+        
+        footer .logo {
+            color: var(--white);
+            font-size: 2rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        
+        footer .logo span {
+            color: var(--kelly-green);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        
+        .social-links a:hover, .social-links a:focus {
+            color: var(--orange);
+            background-color: rgba(255, 255, 255, 0.1);
+            outline: none;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        /* Focus styles for all interactive elements */
+        a:focus, button:focus, input:focus, select:focus, textarea:focus {
+            outline: 2px solid var(--kelly-green);
+            outline-offset: 2px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 968px) {
+            .messaging-container {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            .conversations-sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #eaeaea;
+                max-height: 300px;
+            }
+            
+            .conversations-list {
+                max-height: 200px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .footer-links {
+                justify-content: center;
+            }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .btn:hover {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip link for keyboard users -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Room<span>There</span></a>
+                <div class="user-menu">
+                    <div class="user-info">
+                        <div class="user-avatar">AJ</div>
+                        <span>Alex Johnson</span>
+                    </div>
+                    <a href="index.html" class="logout-link">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Log Out</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="messaging-container">
+            <!-- Conversations Sidebar -->
+            <div class="conversations-sidebar">
+                <div class="conversations-header">
+                    <h2>Messages</h2>
+                    <div class="search-conversations">
+                        <input type="text" placeholder="Search conversations...">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                </div>
+                
+                <div class="conversations-list">
+                    <div class="empty-conversations">
+                        <i class="fas fa-comments empty-conversations-icon"></i>
+                        <div class="empty-conversations-text">
+                            <h3>No messages yet</h3>
+                            <p>When you start conversations with homeowners or renters, they will appear here.</p>
+                            <a href="browse.html" class="btn">Browse Rooms</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chat Area -->
+            <div class="chat-area">
+                <div class="empty-chat-state" id="main-content">
+                    <i class="fas fa-comment-dots empty-chat-icon"></i>
+                    <div class="empty-chat-text">
+                        <h3>Start a conversation</h3>
+                        <p>Select a conversation from the sidebar or begin a new one by contacting a homeowner or renter through their profile.</p>
+                        <p>Messaging helps you ask questions, schedule viewings, and get to know potential roommates.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer - Updated to match available-rooms.html -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <a href="index.html" class="logo">Room<span>There</span></a>
+                <div class="footer-links">
+                    <a href="#" id="footerContactLink">Contact Us</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61581306968087" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/roomthere" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 RoomThere. All rights reserved.</p>
+                <p>Creating safe, intergenerational housing solutions.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add focus styles for keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            document.querySelector('.skip-link').focus();
+            e.preventDefault();
+            setTimeout(() => {
+                document.querySelector('.skip-link').blur();
+            }, 100);
+        }
+        });
+        
+        document.addEventListener('mousedown', function() {
+            document.body.classList.remove('keyboard-navigation');
+        });
+        
+        // Simple search functionality
+        const searchInput = document.querySelector('.search-conversations input');
+        searchInput.addEventListener('input', function() {
+            if (this.value.length > 0) {
+                // In a real app, this would filter conversations
+                console.log('Searching for:', this.value);
+            }
+        });
+    </script>
+</body>
+</html>

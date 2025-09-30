@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renter Profile - RoomThere</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Color Scheme */
+        :root {
+            --navy-blue: #003366;
+            --kelly-green: #4CBB17;
+            --orange: #FF8C00;
+            --white: #FFFFFF;
+            --light-gray: #F8F8F8;
+            --dark-gray: #333333;
+            --medium-gray: #767676;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Skip link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--navy-blue);
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            text-decoration: none;
+            border-radius: 0 0 4px 0;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--navy-blue);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--kelly-green);
+        }
+        
+        /* Verified Badge */
+        .verified-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--kelly-green);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        /* Profile Header */
+        .profile-header {
+            display: flex;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .profile-photo {
+            width: 250px;
+            background-color: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .profile-photo i {
+            font-size: 100px;
+            color: var(--medium-gray);
+        }
+        
+        .profile-info {
+            padding: 30px;
+            flex-grow: 1;
+        }
+        
+        .profile-name {
+            font-size: 2rem;
+            color: var(--navy-blue);
+            margin-bottom: 10px;
+        }
+        
+        .profile-title {
+            font-size: 1.2rem;
+            color: var(--medium-gray);
+            margin-bottom: 20px;
+        }
+        
+        .profile-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--navy-blue);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--medium-gray);
+        }
+        
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: var(--navy-blue);
+            color: var(--white);
+        }
+        
+        .btn:hover, .btn:focus {
+            background: #002244;
+            transform: translateY(-2px);
+            outline: 2px solid var(--kelly-green);
+            outline-offset: 2px;
+        }
+        
+        /* Profile Sections */
+        .profile-section {
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--navy-blue);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-gray);
+        }
+        
+        /* About Section */
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        /* Details Grid */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .detail-item {
+            margin-bottom: 15px;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: var(--navy-blue);
+            margin-bottom: 5px;
+        }
+        
+        .detail-value {
+            color: var(--dark-gray);
+        }
+        
+        /* Amenities */
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .amenity-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: var(--light-gray);
+            border-radius: 5px;
+        }
+        
+        .amenity-item i {
+            color: var(--kelly-green);
+            font-size: 1.2rem;
+        }
+        
+        /* Lifestyle Preferences */
+        .lifestyle-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .lifestyle-item:last-child {
+            border-bottom: none;
+        }
+        
+        .preference-label {
+            font-weight: 600;
+            color: var(--navy-blue);
+        }
+        
+        .preference-value {
+            color: var(--dark-gray);
+        }
+        
+        /* Simple Footer */
+        footer {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 25px 0 15px;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        footer .logo {
+            color: var(--white);
+        }
+        
+        footer .logo span {
+            color: var(--kelly-green);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        
+        .social-links a:hover, .social-links a:focus {
+            color: var(--orange);
+            background-color: rgba(255, 255, 255, 0.1);
+            outline: none;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #ccc;
+            width: 100%;
+            margin-top: 15px;
+        }
+        
+        /* Focus styles for all interactive elements */
+        a:focus, button:focus, input:focus, select:focus {
+            outline: 2px solid var(--kelly-green);
+            outline-offset: 2px;
+        }
+        
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --navy-blue: #000080;
+                --kelly-green: #008000;
+                --orange: #FF4500;
+                --white: #FFFFFF;
+                --light-gray: #F0F0F0;
+                --dark-gray: #000000;
+                --medium-gray: #696969;
+            }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .profile-header {
+                flex-direction: column;
+            }
+            
+            .profile-photo {
+                width: 100%;
+                height: 200px;
+            }
+            
+            .profile-stats {
+                justify-content: space-around;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .btn:hover, .btn:focus {
+                transform: none;
+            }
+        }
+        
+        /* Screen reader only class */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip link for keyboard users -->
+    <a href="#main-content" class="skip-link sr-only">Skip to main content</a>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo" aria-label="RoomThere Home">Room<span>There</span></a>
+                <nav>
+                    <a href="applications.html" class="btn btn-primary">Back to Applications</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container" id="main-content">
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <div class="profile-photo">
+                <i class="fas fa-user-circle" aria-hidden="true"></i>
+            </div>
+            <div class="profile-info">
+                <div class="verified-badge" role="status" aria-label="Renter is verified">
+                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                    <span>Verified</span>
+                </div>
+                
+                <h1 class="profile-name">Alex Johnson</h1>
+                <p class="profile-title">Graduate Student at San Diego State University</p>
+                <p>Seeking a room for the 2024-2025 academic year. Quiet, responsible graduate student looking for a comfortable living environment.</p>
+                
+                <div class="profile-stats">
+                    <div class="stat">
+                        <div class="stat-value">28</div>
+                        <div class="stat-label">Age</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">SDSU</div>
+                        <div class="stat-label">University</div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-primary" aria-label="Contact Alex Johnson">Contact Alex</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <div class="profile-section">
+            <h2 class="section-title">About Me</h2>
+            <p class="about-text">
+                I'm a second-year graduate student in Social Work at SDSU. I grew up in Northern California and moved to San Diego two years ago. 
+                I value a peaceful home environment where I can focus on my studies while also building meaningful connections with my housemates. 
+                In my free time, I enjoy hiking, reading, and volunteering at the local animal shelter. I'm tidy, respectful of shared spaces, 
+                and believe in open communication to resolve any issues that may arise.
+            </p>
+        </div>
+
+        <!-- Basic Information -->
+        <div class="profile-section">
+            <h2 class="section-title">Basic Information</h2>
+            <div class="details-grid">
+                <div class="detail-item">
+                    <div class="detail-label">Occupation</div>
+                    <div class="detail-value">Graduate Student (Social Work)</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Desired Move-In Date</div>
+                    <div class="detail-value">August 15, 2024</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Lease Duration</div>
+                    <div class="detail-value">9-12 months</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Smoking</div>
+                    <div class="detail-value">Non-smoker</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Pets</div>
+                    <div class="detail-value">No pets (allergic to cats)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Amenities & Requirements -->
+        <div class="profile-section">
+            <h2 class="section-title">Desired Amenities</h2>
+            <div class="amenities-grid">
+                <div class="amenity-item">
+                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                    <span>Private bathroom</span>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                    <span>In-unit laundry</span>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                    <span>Parking space</span>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                    <span>Furnished room</span>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                    <span>High-speed internet</span>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                    <span>Air conditioning</span>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                    <span>Utilities included</span>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                    <span>Near public transit</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Simple Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">Room<span>There</span></div>
+                <div class="social-links">
+                    <a href="#" aria-label="Visit our Facebook page">
+                        <i class="fab fa-facebook" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" aria-label="Visit our Instagram page">
+                        <i class="fab fa-instagram" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 RoomThere. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple interactivity for buttons
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function() {
+                if (this.classList.contains('btn-primary')) {
+                    alert('Contact form would open here');
+                }
+            });
+        });
+        
+        // Add focus styles for keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
+        });
+        
+        document.addEventListener('mousedown', function() {
+            document.body.classList.remove('keyboard-navigation');
+        });
+    </script>
+</body>
+</html>
