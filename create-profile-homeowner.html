@@ -383,70 +383,62 @@
         footer {
             background-color: var(--navy-blue);
             color: var(--white);
-            padding: 40px 0 20px;
+            padding: 3rem 0 1rem;
             margin-top: auto;
         }
         
         .footer-content {
             display: flex;
             justify-content: space-between;
-            align-items: center;
             flex-wrap: wrap;
-            margin-bottom: 20px;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px 20px;
         }
         
-        .footer-links {
-            display: flex;
-            gap: 20px;
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
         }
         
-        .footer-links a {
+        .footer-column h3 {
+            color: var(--orange);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
             color: var(--white);
             text-decoration: none;
-            font-weight: 600;
             transition: color 0.3s;
         }
         
-        .footer-links a:hover, .footer-links a:focus {
+        .footer-column ul li a:hover,
+        .footer-column ul li a:focus {
             color: var(--orange);
-        }
-        
-        footer .logo {
-            color: var(--white);
-            font-size: 2rem;
-            font-weight: 700;
-            text-decoration: none;
-        }
-        
-        footer .logo span {
-            color: var(--kelly-green);
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .social-links a {
-            color: var(--white);
-            font-size: 1.5rem;
-            transition: color 0.3s;
-            padding: 5px;
-            border-radius: 3px;
-        }
-        
-        .social-links a:hover, .social-links a:focus {
-            color: var(--orange);
-            background-color: rgba(255, 255, 255, 0.1);
             outline: none;
         }
         
         .copyright {
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.9rem;
-            color: #ccc;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 1000px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
         }
         
         .notice {
@@ -455,6 +447,8 @@
             border-radius: 5px;
             margin-top: 1rem;
             font-size: 0.9rem;
+            max-width: 1000px;
+            margin: 1rem auto 0;
         }
         
         /* Responsive Design */
@@ -509,10 +503,6 @@
                 flex-direction: column;
                 gap: 20px;
                 text-align: center;
-            }
-            
-            .footer-links {
-                justify-content: center;
             }
         }
     </style>
@@ -843,14 +833,29 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="logo">Room<span>There</span></div>
-                <div class="footer-links">
-                    <a href="#" id="footerContactLink">Contact Us</a>
+                <div class="footer-column">
+                    <h3>RoomThere</h3>
+                    <p>Connecting generations through safe, affordable housing solutions.</p>
                 </div>
-                <div class="social-links">
-                    <a href="https://www.facebook.com/profile.php?id=61581306968087" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
-                    <a href="https://www.instagram.com/roomthere" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/safety-guidelines">Safety Guidelines</a></li>
+                        <li><a href="#" id="footerContactLink">Contact Us</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                    </ul>
                 </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <ul>
+                        <li><a href="https://www.facebook.com/profile.php?id=61581306968087"><i class="fab fa-facebook" aria-hidden="true"></i> Facebook</a></li>
+                        <li><a href="https://www.instagram.com/roomthere"><i class="fab fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="notice">
+                <p><strong>Important Notice:</strong> RoomThere is a social connection platform only. We facilitate introductions between members but do not participate in, supervise, or manage rental agreements, financial arrangements, or living terms. All agreements are made directly between members.</p>
             </div>
             <div class="copyright">
                 <p>&copy; 2025 RoomThere. All rights reserved.</p>

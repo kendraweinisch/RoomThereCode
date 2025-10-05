@@ -3,9 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get Verified - Roomthere</title>
+    <title>Get Verified - RoomThere</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --navy-blue: #003366;
+            --kelly-green: #4CBB17;
+            --orange: #FF8C00;
+            --white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --dark-gray: #4A4A4A;
+            --text-dark: #333333;
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -15,7 +25,7 @@
 
         body {
             background-color: #f8f9fa;
-            color: #333;
+            color: var(--text-dark);
             line-height: 1.6;
             min-height: 100vh;
             display: flex;
@@ -192,65 +202,117 @@
             margin-right: 10px;
         }
 
-        /* Footer Styles */
-        footer {
-            background-color: #003366;
-            color: white;
-            padding: 40px 0 20px;
-            margin-top: auto;
+        /* Verification Process Styles */
+        .verification-process {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 4px solid #2E8B57;
         }
 
+        .verification-process h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .verification-steps {
+            margin: 1.5rem 0;
+            padding-left: 1rem;
+        }
+
+        .verification-steps li {
+            margin-bottom: 1rem;
+            padding-left: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .verification-steps strong {
+            color: #2E8B57;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .closing-statement {
+            font-style: italic;
+            color: #666;
+            border-left: 3px solid #2E8B57;
+            padding-left: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 0.5rem;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+            margin-top: auto;
+        }
+        
         .footer-content {
             display: flex;
             justify-content: space-between;
-            align-items: center;
             flex-wrap: wrap;
-            margin-bottom: 20px;
+            gap: 2rem;
+            margin-bottom: 2rem;
             max-width: 1000px;
             margin: 0 auto;
             padding: 0 20px 20px;
         }
-
-        footer .logo {
-            color: white;
-            font-size: 2rem;
-            font-weight: 700;
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-column h3 {
+            color: var(--orange);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: var(--white);
             text-decoration: none;
-        }
-
-        footer .logo span {
-            color: #4CBB17;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
             transition: color 0.3s;
-            padding: 5px;
-            border-radius: 3px;
         }
-
-        .social-links a:hover, .social-links a:focus {
-            color: #FF8C00;
-            background-color: rgba(255, 255, 255, 0.1);
+        
+        .footer-column ul li a:hover,
+        .footer-column ul li a:focus {
+            color: var(--orange);
             outline: none;
         }
-
+        
         .copyright {
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.9rem;
-            color: #ccc;
+            color: rgba(255, 255, 255, 0.7);
             max-width: 1000px;
             margin: 0 auto;
             padding-left: 20px;
             padding-right: 20px;
+        }
+        
+        .notice {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            max-width: 1000px;
+            margin: 1rem auto 0;
         }
 
         @media (max-width: 768px) {
@@ -276,6 +338,11 @@
                 flex-direction: column;
                 gap: 20px;
                 text-align: center;
+            }
+            
+            .verification-process {
+                padding: 20px;
+                margin: 15px 0;
             }
         }
     </style>
@@ -320,32 +387,30 @@
                 <div class="step">
                     <div class="step-number">3</div>
                     <h3>Get Your Badge</h3>
-                    <p>Once the check is complete (usually within minutes), your profile will be automatically updated with the exclusive Verified Badge.</p>
+                    <p>Once the check is complete, your profile will be automatically updated with the exclusive Verified Badge.</p>
                 </div>
             </div>
         </div>
 
         <div class="card">
             <h2>Our Commitment to Your Privacy & Security</h2>
-            <p>To ensure a safe and trusted community, Roomthere partners with Authenticate, an industry-leading background check provider. Get verified to build trust with potential roommates and landlords.</p>
+            <p>To ensure a safe and trusted community, RoomThere partners with Authenticate, an industry-leading background check provider. Get verified to build trust with potential housemates.</p>
             
             <div class="privacy-note">
-                <p><strong>This is a direct transaction between you and Authenticate to ensure your data privacy and security.</strong> We never see your sensitive personal data. The fee you pay goes directly to Authenticate for processing your secure background check.</p>
-                <p>As a platform, our revenue comes from premium features that help you find a match faster, not from your background check. Your trust is our priority.</p>
+                <p><strong>This is a direct transaction between you and Authenticate to ensure your data privacy and security.</strong> We never see your sensitive personal data. Your trust is our priority.</p>
             </div>
         </div>
 
         <div class="cta-section">
             <h2>Ready to Get Verified?</h2>
-            <p>Clicking the button below will take you to Authenticate's secure portal to complete the process. You will pay Authenticate directly for this service.</p>
+            <p>Clicking the button below will take you to Authenticate's secure portal to complete the process.</p>
             
             <button class="verify-button" id="verifyButton">
                 <i class="fas fa-shield-alt"></i> Continue to Secure Verification
             </button>
             
             <p class="disclaimer">
-                You will have a chance to review all details and authorize the check before any payment is processed. 
-                By continuing, you agree to <a href="#">Authenticate's Terms of Service</a> and <a href="#">Privacy Policy</a>.
+                By continuing, you agree to <a href="https://authenticate.com/terms-of-use">Authenticate's Terms of Use</a> and <a href="https://authenticate.com/privacy-policy">Privacy Policy</a>.
             </p>
         </div>
 
@@ -356,21 +421,38 @@
                 <div class="faq-question">
                     <i class="fas fa-question-circle"></i> What exactly is checked?
                 </div>
-                <p>The standard verification includes a criminal background check. This process is designed to confirm your identity and provide a trust signal to the community.</p>
+                <div class="verification-process">
+                    <h2>Our Comprehensive Verification Process</h2>
+                    <p>To ensure a trusted community, every member undergoes a rigorous screening that confirms their identity and background. The process is tailored for complete coverage:</p>
+                    
+                    <ul class="verification-steps">
+                        <li>
+                            <strong>Government ID Validation</strong> for all members.
+                        </li>
+                        <li>
+                            <strong>Domestic Background Check</strong> for residents, including criminal history and the national sex offender registry.
+                        </li>
+                        <li>
+                            <strong>Global Background Check</strong> for international students, ensuring worldwide safety standards.
+                        </li>
+                    </ul>
+                    
+                    <p class="closing-statement">This layered approach provides peace of mind and fosters a secure environment for everyone.</p>
+                </div>
             </div>
             
             <div class="faq-item">
                 <div class="faq-question">
                     <i class="fas fa-question-circle"></i> How much does it cost?
                 </div>
-                <p>The fee for the verification is <strong>$29.99</strong>, paid directly to Authenticate. Roomthere does not add any processing fees.</p>
+                <p>The fee for the verification is <strong>$29.99</strong> and includes RoomThere's processing fee.</p>
             </div>
             
             <div class="faq-item">
                 <div class="faq-question">
                     <i class="fas fa-question-circle"></i> Who sees my report?
                 </div>
-                <p>Your full report is private. Roomthere only receives a confirmation that you have successfully passed the verification, which triggers the "Verified Badge" on your profile. You can access your full report anytime through your Authenticate account.</p>
+                <p>Your full report is private. RoomThere only receives a confirmation that you have successfully passed the verification, which triggers the "Verified Badge" on your profile. You can access your full report anytime through your Authenticate account.</p>
             </div>
             
             <div class="faq-item">
@@ -391,16 +473,36 @@
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <a href="index.html" class="logo">Room<span>There</span></a>
-            <div class="social-links">
-                <a href="https://facebook.com/roomthere" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
-                <a href="https://instagram.com/roomthere" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>RoomThere</h3>
+                    <p>Connecting generations through safe, affordable housing solutions.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/safety-guidelines">Safety Guidelines</a></li>
+                        <li><a href="#" id="report-link">Report a Problem</a></li>
+                        <li><a href="#" id="contact-link">Contact Us</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <ul>
+                        <li><a href="https://www.facebook.com/profile.php?id=61581306968087"><i class="fab fa-facebook" aria-hidden="true"></i> Facebook</a></li>
+                        <li><a href="https://www.instagram.com/roomthere?igsh=N2Qzajk5a3d5aWpq&utm_source=qr"><i class="fab fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class="copyright">
-            <p>&copy; 2025 RoomThere. All rights reserved.</p>
-            <p>Creating safe, intergenerational housing solutions.</p>
+            <div class="notice">
+                <p><strong>Important Notice:</strong> RoomThere is a social connection platform only. We facilitate introductions between members but do not participate in, supervise, or manage rental agreements, financial arrangements, or living terms. All agreements are made directly between members.</p>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 RoomThere. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 

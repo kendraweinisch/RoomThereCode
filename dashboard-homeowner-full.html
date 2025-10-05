@@ -450,70 +450,63 @@
         footer {
             background-color: var(--navy-blue);
             color: var(--white);
-            padding: 40px 0 20px;
+            padding: 3rem 0 1rem;
             margin-top: auto;
         }
         
         .footer-content {
             display: flex;
             justify-content: space-between;
-            align-items: center;
             flex-wrap: wrap;
-            margin-bottom: 20px;
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
         
-        .footer-links {
-            display: flex;
-            gap: 20px;
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
         }
         
-        .footer-links a {
+        .footer-column h3 {
+            color: var(--orange);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
             color: var(--white);
             text-decoration: none;
-            font-weight: 600;
             transition: color 0.3s;
         }
         
-        .footer-links a:hover, .footer-links a:focus {
+        .footer-column ul li a:hover,
+        .footer-column ul li a:focus {
             color: var(--orange);
-        }
-        
-        footer .logo {
-            color: var(--white);
-            font-size: 2rem;
-            font-weight: 700;
-            text-decoration: none;
-        }
-        
-        footer .logo span {
-            color: var(--kelly-green);
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .social-links a {
-            color: var(--white);
-            font-size: 1.5rem;
-            transition: color 0.3s;
-            padding: 5px;
-            border-radius: 3px;
-        }
-        
-        .social-links a:hover, .social-links a:focus {
-            color: var(--orange);
-            background-color: rgba(255, 255, 255, 0.1);
             outline: none;
         }
         
         .copyright {
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.9rem;
-            color: #ccc;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .notice {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
         }
         
         /* Modal Styles */
@@ -529,7 +522,6 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            box-sizing: border-box;
         }
         
         .modal-content {
@@ -540,7 +532,6 @@
             max-width: 500px;
             position: relative;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            margin: auto;
         }
         
         .close {
@@ -550,6 +541,8 @@
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--medium-gray);
+            background: none;
+            border: none;
         }
         
         .close:hover {
@@ -567,7 +560,7 @@
             color: var(--dark-gray);
         }
         
-        .form-group input, .form-group textarea {
+        .form-group input, .form-group textarea, .form-group select {
             width: 100%;
             padding: 12px 15px;
             border: 2px solid #ddd;
@@ -576,7 +569,7 @@
             transition: border-color 0.3s;
         }
         
-        .form-group input:focus, .form-group textarea:focus {
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
             border-color: var(--navy-blue);
             outline: none;
             box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.2);
@@ -585,6 +578,15 @@
         .form-group textarea {
             min-height: 100px;
             resize: vertical;
+        }
+        
+        .btn-secondary {
+            background: var(--orange);
+            color: var(--white);
+        }
+        
+        .btn-secondary:hover {
+            background: #e67e00;
         }
         
         /* Focus styles for all interactive elements */
@@ -638,12 +640,6 @@
             
             .footer-content {
                 flex-direction: column;
-                gap: 20px;
-                text-align: center;
-            }
-            
-            .footer-links {
-                justify-content: center;
             }
         }
         
@@ -846,26 +842,41 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="logo">Room<span>There</span></div>
-                <div class="footer-links">
-                    <a href="#" id="footerContactLink">Contact Us</a>
+                <div class="footer-column">
+                    <h3>RoomThere</h3>
+                    <p>Connecting generations through safe, affordable housing solutions.</p>
                 </div>
-                <div class="social-links">
-                    <a href="https://www.facebook.com/profile.php?id=61581306968087" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
-                    <a href="https://www.instagram.com/roomthere" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/safety-guidelines">Safety Guidelines</a></li>
+                        <li><a href="#" id="report-link">Report a Problem</a></li>
+                        <li><a href="#" id="contact-link">Contact Us</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                    </ul>
                 </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <ul>
+                        <li><a href="https://www.facebook.com/profile.php?id=61581306968087"><i class="fab fa-facebook" aria-hidden="true"></i> Facebook</a></li>
+                        <li><a href="https://www.instagram.com/roomthere?igsh=N2Qzajk5a3d5aWpq&utm_source=qr"><i class="fab fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="notice">
+                <p><strong>Important Notice:</strong> RoomThere is a social connection platform only. We facilitate introductions between members but do not participate in, supervise, or manage rental agreements, financial arrangements, or living terms. All agreements are made directly between members.</p>
             </div>
             <div class="copyright">
                 <p>&copy; 2025 RoomThere. All rights reserved.</p>
-                <p>Creating safe, intergenerational housing solutions.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Contact Us Modal -->
+    <!-- Contact Modal -->
     <div id="contactModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <button class="close">&times;</button>
             <h2>Contact RoomThere</h2>
             <form id="contactModalForm">
                 <div class="form-group">
@@ -877,14 +888,67 @@
                     <input type="email" id="modal-email" name="email" required>
                 </div>
                 <div class="form-group">
-                    <label for="modal-phone">Phone Number (Optional)</label>
-                    <input type="tel" id="modal-phone" name="phone">
+                    <label for="user-type">I am a:</label>
+                    <select id="user-type" name="user-type" required>
+                        <option value="">Please select</option>
+                        <option value="homeowner">Homeowner with a room to share</option>
+                        <option value="renter">Looking for a room to rent</option>
+                        <option value="family">Family member of a homeowner</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="modal-subject">Subject</label>
+                    <input type="text" id="modal-subject" name="subject" required>
                 </div>
                 <div class="form-group">
                     <label for="modal-message">Message *</label>
                     <textarea id="modal-message" name="message" required placeholder="How can we help you?"></textarea>
                 </div>
                 <button type="submit" class="btn btn-secondary">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Report Problem Modal -->
+    <div id="reportModal" class="modal">
+        <div class="modal-content">
+            <button class="close">&times;</button>
+            <h2>Report a Problem</h2>
+            <div class="emergency-notice">
+                <h3><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> Emergency Notice</h3>
+                <p><strong>If this is an emergency or someone is in immediate danger, please call 911 first.</strong></p>
+                <p>We are here to help with non-emergency issues related to the RoomThere platform.</p>
+            </div>
+            <form id="reportModalForm">
+                <div class="form-group">
+                    <label for="report-name">Full Name</label>
+                    <input type="text" id="report-name" name="report-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="report-email">Email Address</label>
+                    <input type="email" id="report-email" name="report-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="report-type">Type of Issue</label>
+                    <select id="report-type" name="report-type" required>
+                        <option value="">Please select</option>
+                        <option value="technical">Technical Problem</option>
+                        <option value="safety">Safety Concern</option>
+                        <option value="user-conduct">User Conduct Issue</option>
+                        <option value="payment">Payment Issue</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="report-subject">Subject</label>
+                    <input type="text" id="report-subject" name="report-subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="report-message">Describe the Problem</label>
+                    <textarea id="report-message" name="report-message" required placeholder="Please provide as much detail as possible about the issue you're experiencing..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-secondary">Submit Report</button>
             </form>
         </div>
     </div>
@@ -905,17 +969,6 @@
             });
         });
         
-        // Add focus styles for keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Tab') {
-                document.body.classList.add('keyboard-navigation');
-            }
-        });
-        
-        document.addEventListener('mousedown', function() {
-            document.body.classList.remove('keyboard-navigation');
-        });
-        
         // Mobile sidebar navigation
         const navItems = document.querySelectorAll('.nav-item');
         navItems.forEach(item => {
@@ -925,65 +978,82 @@
             });
         });
 
-        // Contact Us Modal Functionality
+        // Modal functionality
         const contactModal = document.getElementById('contactModal');
-        const contactModalForm = document.getElementById('contactModalForm');
-        const closeModal = document.querySelector('.close');
-        const footerContactLink = document.getElementById('footerContactLink');
+        const reportModal = document.getElementById('reportModal');
+        const contactLink = document.getElementById('contact-link');
+        const reportLink = document.getElementById('report-link');
+        const closeButtons = document.querySelectorAll('.close');
 
-        // Check if elements exist
-        if (contactModal && contactModalForm && closeModal && footerContactLink) {
-            // Function to open modal
-            function openContactModal() {
+        // Open contact modal
+        if (contactLink) {
+            contactLink.addEventListener('click', function(e) {
+                e.preventDefault();
                 contactModal.style.display = 'flex';
                 document.body.style.overflow = 'hidden';
-                document.getElementById('modal-name').focus();
-            }
+            });
+        }
 
-            // Function to close modal
-            function closeContactModal() {
+        // Open report modal
+        if (reportLink) {
+            reportLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                reportModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+        }
+
+        // Close modals
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                contactModal.style.display = 'none';
+                reportModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === contactModal) {
                 contactModal.style.display = 'none';
                 document.body.style.overflow = 'auto';
-                contactModalForm.reset();
             }
+            if (e.target === reportModal) {
+                reportModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
 
-            // Close modal when clicking X
-            closeModal.addEventListener('click', closeContactModal);
+        // Close modals with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                contactModal.style.display = 'none';
+                reportModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
 
-            // Close modal when clicking outside
-            window.addEventListener('click', function(event) {
-                if (event.target === contactModal) {
-                    closeContactModal();
-                }
-            });
-
-            // Close modal with Escape key
-            document.addEventListener('keydown', function(event) {
-                if (event.key === 'Escape' && contactModal.style.display === 'flex') {
-                    closeContactModal();
-                }
-            });
-
-            // Handle form submission
-            contactModalForm.addEventListener('submit', function(e) {
+        // Contact form submission
+        const contactForm = document.getElementById('contactModalForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                
-                const name = document.getElementById('modal-name').value;
-                const email = document.getElementById('modal-email').value;
-                const phone = document.getElementById('modal-phone').value;
-                const message = document.getElementById('modal-message').value;
-                
-                // Show confirmation (in real app, send to server)
-                alert(`Thank you, ${name}! Your message has been sent. We'll contact you at ${email} soon.`);
-                
-                // Close modal
-                closeContactModal();
+                alert('Thank you for your message! We will get back to you soon.');
+                contactModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                contactForm.reset();
             });
+        }
 
-            // Make the Contact Us link work
-            footerContactLink.addEventListener('click', function(e) {
+        // Report form submission
+        const reportForm = document.getElementById('reportModalForm');
+        if (reportForm) {
+            reportForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                openContactModal();
+                alert('Thank you for reporting the problem. We will investigate and get back to you soon.');
+                reportModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                reportForm.reset();
             });
         }
     </script>

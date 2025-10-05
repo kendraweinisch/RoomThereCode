@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RoomThere - Safe, Affordable Intergenerational Housing</title>
+    <meta name="description" content="Connecting generations through safe, affordable housing solutions">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -488,6 +489,38 @@
             outline: 2px solid var(--navy-blue);
         }
         
+        /* Report Problem Modal */
+        .report-modal {
+            background-color: var(--white);
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .emergency-notice {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            color: #856404;
+        }
+        
+        .emergency-notice h3 {
+            color: #856404;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .emergency-notice p {
+            margin-bottom: 0.5rem;
+        }
+        
         /* Skip to main content link for accessibility */
         .skip-link {
             position: absolute;
@@ -611,7 +644,6 @@
                         <li><a href="#benefits">Benefits</a></li>
                         <li><a href="#how-it-works">How It Works</a></li>
                         <li><a href="#faq">FAQ</a></li>
-                        <li><a href="renter-profile.html" class="btn-primary">Find a Room</a></li>
                     </ul>
                 </nav>
                 <button class="mobile-menu" aria-label="Toggle navigation menu">
@@ -627,8 +659,8 @@
             <h1>Peace of Mind, Right at Home.</h1>
             <p>A safer, smarter way to find compatible housemates. RoomThere connects responsible graduate students and young professionals with seniors who have extra space, fostering security, companionship, and a win-win for everyone.</p>
             <div class="cta-buttons">
-                <a href="homeowner-profile.html" class="btn btn-primary">I Have a Room to Share</a>
-                <a href="renter-profile.html" class="btn btn-secondary">I Need a Room to Rent</a>
+                <a href="create-profile-homeowner.html" class="btn btn-primary">I Have a Room to Share</a>
+                <a href="available-rooms.html" class="btn btn-secondary">Find a Room to Rent</a>
             </div>
         </div>
     </section>
@@ -704,7 +736,7 @@
                         Is a background check required?
                     </div>
                     <div class="faq-answer">
-                        <p>While not mandatory, we strongly recommend that all users complete a third-party background check through our trusted partner, Accurate.com. Profiles indicate when a check has been completed.</p>
+                        <p>While not mandatory, we strongly recommend that all users complete a third-party background check through our trusted partner, Authenticate.com. Profiles indicate when a check has been completed.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -765,10 +797,11 @@
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#benefits">Benefits</a></li>
-                        <li><a href="#how-it-works">How It Works</a></li>
-                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="/legal.html">Safety Guidelines</a></li>
+                        <li><a href="#" id="report-link">Report a Problem</a></li>
                         <li><a href="#" id="contact-link">Contact Us</a></li>
+                        <li><a href="/legal.html">Privacy Policy</a></li>
+                        <li><a href="/legal.html">Terms of Service</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -780,7 +813,7 @@
                 </div>
             </div>
             <div class="notice">
-                <p><strong>Important Notice:</strong> RoomThere facilitates connections between users only. All rental agreements, financial arrangements, and living terms are negotiated and managed directly between the homeowner and the renter. RoomThere is not a party to any agreements and does not provide legal or financial advice.</p>
+                <p><strong>Important Notice:</strong> RoomThere is a social connection platform only. We facilitate introductions between members but do not participate in, supervise, or manage rental agreements, financial arrangements, or living terms. All agreements are made directly between members.</p>
             </div>
             <div class="copyright">
                 <p>&copy; 2025 RoomThere. All rights reserved.</p>
@@ -823,6 +856,51 @@
                     <textarea id="message" name="message" required></textarea>
                 </div>
                 <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Report Problem Modal -->
+    <div class="modal-overlay" id="report-modal">
+        <div class="report-modal" role="dialog" aria-labelledby="report-modal-title" aria-modal="true">
+            <div class="modal-header">
+                <h2 id="report-modal-title">Report a Problem</h2>
+                <button class="close-modal" aria-label="Close report form">×</button>
+            </div>
+            <div class="emergency-notice">
+                <h3><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> Emergency Notice</h3>
+                <p><strong>If this is an emergency or someone is in immediate danger, please call 911 first.</strong></p>
+                <p>We are here to help with non-emergency issues related to the RoomThere platform.</p>
+            </div>
+            <form class="contact-form" id="report-form">
+                <div class="form-group">
+                    <label for="report-name">Full Name</label>
+                    <input type="text" id="report-name" name="report-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="report-email">Email Address</label>
+                    <input type="email" id="report-email" name="report-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="report-type">Type of Issue</label>
+                    <select id="report-type" name="report-type" required>
+                        <option value="">Please select</option>
+                        <option value="technical">Technical Problem</option>
+                        <option value="safety">Safety Concern</option>
+                        <option value="user-conduct">User Conduct Issue</option>
+                        <option value="payment">Payment Issue</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="report-subject">Subject</label>
+                    <input type="text" id="report-subject" name="report-subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="report-message">Describe the Problem</label>
+                    <textarea id="report-message" name="report-message" required placeholder="Please provide as much detail as possible about the issue you're experiencing..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Report</button>
             </form>
         </div>
     </div>
@@ -894,39 +972,57 @@
         // Contact Modal Functionality
         const contactModal = document.getElementById('contact-modal');
         const contactLink = document.getElementById('contact-link');
-        const closeModal = document.querySelector('.close-modal');
+        const closeModal = document.querySelectorAll('.close-modal');
         const contactForm = document.getElementById('contact-form');
 
-        // Open modal when Contact Us link is clicked
+        // Report Modal Functionality
+        const reportModal = document.getElementById('report-modal');
+        const reportLink = document.getElementById('report-link');
+        const reportForm = document.getElementById('report-form');
+
+        // Open contact modal when Contact Us link is clicked
         contactLink.addEventListener('click', function(e) {
             e.preventDefault();
             contactModal.classList.add('active');
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
         });
 
-        // Close modal when close button is clicked
-        closeModal.addEventListener('click', function() {
-            contactModal.classList.remove('active');
-            document.body.style.overflow = ''; // Restore scrolling
+        // Open report modal when Report a Problem link is clicked
+        reportLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            reportModal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
         });
 
-        // Close modal when clicking outside the modal content
-        contactModal.addEventListener('click', function(e) {
-            if (e.target === contactModal) {
+        // Close modals when close button is clicked
+        closeModal.forEach(button => {
+            button.addEventListener('click', function() {
                 contactModal.classList.remove('active');
+                reportModal.classList.remove('active');
                 document.body.style.overflow = ''; // Restore scrolling
-            }
+            });
         });
 
-        // Close modal with Escape key
+        // Close modals when clicking outside the modal content
+        [contactModal, reportModal].forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = ''; // Restore scrolling
+                }
+            });
+        });
+
+        // Close modals with Escape key
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && contactModal.classList.contains('active')) {
+            if (e.key === 'Escape') {
                 contactModal.classList.remove('active');
+                reportModal.classList.remove('active');
                 document.body.style.overflow = ''; // Restore scrolling
             }
         });
 
-        // Form submission handler
+        // Contact form submission handler
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -938,10 +1034,54 @@
             contactForm.reset();
         });
 
-        // Set focus to first form field when modal opens
+        // Report form submission handler
+        reportForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const formData = new FormData(reportForm);
+            const reportData = {
+                name: formData.get('report-name'),
+                email: formData.get('report-email'),
+                issueType: formData.get('report-type'),
+                subject: formData.get('report-subject'),
+                message: formData.get('report-message'),
+                timestamp: new Date().toISOString()
+            };
+            
+            // Create email body
+            const emailBody = `
+Problem Report from RoomThere:
+
+Name: ${reportData.name}
+Email: ${reportData.email}
+Issue Type: ${reportData.issueType}
+Subject: ${reportData.subject}
+Message: ${reportData.message}
+Timestamp: ${reportData.timestamp}
+            `;
+            
+            // In a real implementation, you would send this to your server
+            // For now, we'll simulate sending an email
+            console.log('Report data would be sent to hello@roomthere.com:');
+            console.log(emailBody);
+            
+            alert('Thank you for reporting the problem. We will investigate and get back to you soon.');
+            reportModal.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+            reportForm.reset();
+        });
+
+        // Set focus to first form field when modals open
         contactLink.addEventListener('click', function() {
             setTimeout(() => {
                 document.getElementById('name').focus();
+            }, 100);
+        });
+        
+        reportLink.addEventListener('click', function() {
+            setTimeout(() => {
+                document.getElementById('report-name').focus();
             }, 100);
         });
     </script>

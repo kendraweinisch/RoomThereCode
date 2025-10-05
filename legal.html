@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal & Safety - RoomThere</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --navy-blue: #003366;
+            --kelly-green: #4CBB17;
+            --orange: #FF8C00;
+            --white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --dark-gray: #4A4A4A;
+            --text-dark: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--light-gray);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo a {
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--orange);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        /* Navigation Tabs */
+        .legal-nav {
+            background-color: var(--white);
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 70px;
+            z-index: 99;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn.active {
+            background-color: var(--orange);
+            color: var(--white);
+        }
+        
+        .tab-btn:hover:not(.active) {
+            background-color: var(--light-gray);
+        }
+        
+        /* Content Sections */
+        .content-section {
+            background-color: var(--white);
+            padding: 3rem 0;
+        }
+        
+        .policy-content, .terms-content, .safety-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: none;
+        }
+        
+        .active-content {
+            display: block;
+        }
+        
+        .policy-content h1, .terms-content h1, .safety-content h1 {
+            color: var(--navy-blue);
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+        
+        .policy-content h2, .terms-content h2, .safety-content h2 {
+            color: var(--navy-blue);
+            margin: 2rem 0 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .policy-content h3, .terms-content h3, .safety-content h3 {
+            color: var(--navy-blue);
+            margin: 1.5rem 0 0.8rem;
+            font-size: 1.2rem;
+        }
+        
+        .policy-content p, .terms-content p, .safety-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .policy-content ul, .terms-content ul, .safety-content ul {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        .policy-content li, .terms-content li, .safety-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .policy-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .policy-content th, .policy-content td {
+            border: 1px solid #ddd;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        
+        .policy-content th {
+            background-color: var(--light-gray);
+            font-weight: 600;
+        }
+        
+        .last-updated {
+            color: var(--dark-gray);
+            font-style: italic;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .summary-box {
+            background-color: var(--light-gray);
+            border-left: 4px solid var(--orange);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .toc {
+            background-color: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin: 1.5rem 0;
+        }
+        
+        .toc ul {
+            list-style-type: decimal;
+        }
+        
+        .toc li {
+            margin-bottom: 0.3rem;
+        }
+        
+        .highlight-box {
+            background-color: #fff8e1;
+            border-left: 4px solid var(--orange);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .compliance-notice {
+            background-color: rgba(255, 140, 0, 0.1);
+            border-left: 4px solid var(--orange);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 5px;
+        }
+        
+        .guideline-section {
+            margin-bottom: 3rem;
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            padding: 2rem;
+        }
+        
+        .guideline-section h3 {
+            color: var(--navy-blue);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--orange);
+        }
+        
+        .guideline-list {
+            list-style-type: none;
+        }
+        
+        .guideline-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .guideline-list li:before {
+            content: "•";
+            color: var(--orange);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .highlight {
+            background-color: rgba(76, 187, 23, 0.1);
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        
+        .caution-list {
+            background-color: rgba(255, 140, 0, 0.05);
+            border-left: 4px solid var(--orange);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .resource-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .resource-card i {
+            font-size: 2.5rem;
+            color: var(--navy-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .resource-card h4 {
+            color: var(--navy-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        .legal-disclaimer {
+            background-color: rgba(0, 51, 102, 0.05);
+            border: 1px solid var(--navy-blue);
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-top: 2rem;
+        }
+        
+        .update-info {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-column h3 {
+            color: var(--orange);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--orange);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--orange);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .notice {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--orange);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: #e67e00;
+            transform: translateY(-3px);
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--navy-blue);
+            background: none;
+            border: none;
+        }
+        
+        .modal h2 {
+            color: var(--navy-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .modal p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .report-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--navy-blue);
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: var(--orange);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .submit-btn:hover {
+            background-color: #e67e00;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .policy-content table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tab-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo"><a href="index.html">RoomThere</a></div>
+                <nav>
+                    <ul>
+                        <li><a href="find-room.html">Find a Room</a></li>
+                        <li><a href="list-room.html">I Have a Room to Rent</a></li>
+                        <li><a href="verification.html">Get Verified</a></li>
+                        <li><a href="account.html">My Account</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Legal & Safety Information</h1>
+            <p>Your safety and privacy are our top priorities. Review our policies and guidelines to understand how RoomThere protects you and facilitates secure connections.</p>
+        </div>
+    </section>
+
+    <!-- Navigation Tabs -->
+    <section class="legal-nav">
+        <div class="container">
+            <div class="nav-tabs">
+                <button class="tab-btn active" data-tab="privacy">Privacy Policy</button>
+                <button class="tab-btn" data-tab="terms">Terms of Service</button>
+                <button class="tab-btn" data-tab="safety">Safety Guidelines</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Sections -->
+    <section class="content-section">
+        <div class="container">
+            <!-- Privacy Policy Content -->
+            <div id="privacy" class="policy-content active-content">
+                <h1>Privacy Policy</h1>
+                <p class="last-updated">Last updated: October 1, 2025</p>
+
+                <p>This Privacy Notice for RoomThere, LLC (doing business as RoomThere) ("we," "us," or "our"), describes how and why we might access, collect, store, use, and/or share ("process") your personal information when you use our services ("Services"), including when you:</p>
+                
+                <ul>
+                    <li>Visit our website at roomthere.com or any website of ours that links to this Privacy Notice</li>
+                    <li>Engage with us in other related ways, including any sales, marketing, or events</li>
+                </ul>
+
+                <p><strong>Questions or concerns?</strong> Reading this Privacy Notice will help you understand your privacy rights and choices. We are responsible for making decisions about how your personal information is processed. If you do not agree with our policies and practices, please do not use our Services. If you still have any questions or concerns, please contact us at hello@roomthere.com.</p>
+
+                <div class="summary-box">
+                    <h2>SUMMARY OF KEY POINTS</h2>
+                    <p><em>This summary provides key points from our Privacy Notice, but you can find out more details about any of these topics by clicking the link following each key point or by using our table of contents below to find the section you are looking for.</em></p>
+                    
+                    <p><strong>What personal information do we process?</strong> When you visit, use, or navigate our Services, we may process personal information depending on how you interact with us and the Services, the choices you make, and the products and features you use. Learn more about personal information you disclose to us.</p>
+                    
+                    <p><strong>Do we process any sensitive personal information?</strong> Some of the information may be considered "special" or "sensitive" in certain jurisdictions, for example your racial or ethnic origins, sexual orientation, and religious beliefs. We may process sensitive personal information when necessary with your consent or as otherwise permitted by applicable law. Learn more about sensitive information we process.</p>
+                    
+                    <p><strong>Do we collect any information from third parties?</strong> When you initiate a background test through our trusted third-party partner, Authenticate, we receive a score of PASS or DID NOT PASS. At that time, you are able to see your own personal data through your account at Authenticate.com.</p>
+                    
+                    <p><strong>How do we process your information?</strong> We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process your information for other purposes with your consent. We process your information only when we have a valid legal reason to do so. Learn more about how we process your information.</p>
+                    
+                    <p><strong>In what situations and with which parties do we share personal information?</strong> We may share information in specific situations and with specific third parties. Learn more about when and with whom we share your personal information.</p>
+                    
+                    <p><strong>What are your rights?</strong> Depending on where you are located geographically, the applicable privacy law may mean you have certain rights regarding your personal information. Learn more about your privacy rights.</p>
+                    
+                    <p><strong>How do you exercise your rights?</strong> The easiest way to exercise your rights is by submitting a data subject access request, or by contacting us. We will consider and act upon any request in accordance with applicable data protection laws.</p>
+                    
+                    <p>Want to learn more about what we do with any information we collect? Review the Privacy Notice in full.</p>
+                </div>
+
+                <div class="toc">
+                    <h2>TABLE OF CONTENTS</h2>
+                    <ul>
+                        <li><a href="#section1">1. WHAT INFORMATION DO WE COLLECT?</a></li>
+                        <li><a href="#section2">2. HOW DO WE PROCESS YOUR INFORMATION?</a></li>
+                        <li><a href="#section3">3. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?</a></li>
+                        <li><a href="#section4">4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?</a></li>
+                        <li><a href="#section5">5. HOW DO WE HANDLE YOUR SOCIAL LOGINS?</a></li>
+                        <li><a href="#section6">6. HOW LONG DO WE KEEP YOUR INFORMATION?</a></li>
+                        <li><a href="#section7">7. DO WE COLLECT INFORMATION FROM MINORS?</a></li>
+                        <li><a href="#section8">8. WHAT ARE YOUR PRIVACY RIGHTS?</a></li>
+                        <li><a href="#section9">9. CONTROLS FOR DO-NOT-TRACK FEATURES</a></li>
+                        <li><a href="#section10">10. DO UNITED STATES RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?</a></li>
+                        <li><a href="#section11">11. DO WE MAKE UPDATES TO THIS NOTICE?</a></li>
+                        <li><a href="#section12">12. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a></li>
+                        <li><a href="#section13">13. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</a></li>
+                    </ul>
+                </div>
+
+                <h2 id="section1">1. WHAT INFORMATION DO WE COLLECT?</h2>
+                
+                <h3>Personal information you disclose to us</h3>
+                <p><em>In Short: We collect personal information that you provide to us.</em></p>
+                <p>We collect personal information that you voluntarily provide to us when you register on the Services, express an interest in obtaining information about us or our products and Services, when you participate in activities on the Services, or otherwise when you contact us.</p>
+                
+                <p><strong>Personal Information Provided by You.</strong> The personal information that we collect depends on the context of your interactions with us and the Services, the choices you make, and the products and features you use. The personal information we collect may include the following:</p>
+                <ul>
+                    <li>names</li>
+                    <li>phone numbers</li>
+                    <li>email addresses</li>
+                    <li>mailing addresses</li>
+                    <li>usernames</li>
+                    <li>passwords</li>
+                    <li>contact or authentication data</li>
+                    <li>billing addresses</li>
+                    <li>debit/credit card numbers</li>
+                </ul>
+                
+                <p><strong>Sensitive Information.</strong> When necessary, with your consent or as otherwise permitted by applicable law, we process the following categories of sensitive information:</p>
+                
+                <p><strong>Payment Data.</strong> We may collect data necessary to process your payment if you choose to make purchases, such as your payment instrument number, and the security code associated with your payment instrument. All payment data is handled and stored by Stripe. You may find their privacy notice link(s) here: https://stripe.com/privacy.</p>
+                
+                <p><strong>Social Media Login Data.</strong> We may provide you with the option to register with us using your existing social media account details, like your Facebook, X, or other social media account. If you choose to register in this way, we will collect certain profile information about you from the social media provider, as described in the section called "HOW DO WE HANDLE YOUR SOCIAL LOGINS?" below.</p>
+                
+                <p>All personal information that you provide to us must be true, complete, and accurate, and you must notify us of any changes to such personal information.</p>
+                
+                <p><strong>Google API</strong><br>
+                Our use of information received from Google APIs will adhere to Google API Services User Data Policy, including the Limited Use requirements.</p>
+
+                <h2 id="section2">2. HOW DO WE PROCESS YOUR INFORMATION?</h2>
+                
+                <p><em>In Short: We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process your information for other purposes with your consent.</em></p>
+                
+                <p><strong>We process your personal information for a variety of reasons, depending on how you interact with our Services, including:</strong></p>
+                
+                <ul>
+                    <li><strong>To facilitate account creation and authentication and otherwise manage user accounts.</strong> We may process your information so you can create and log in to your account, as well as keep your account in working order.</li>
+                    <li><strong>To deliver and facilitate delivery of services to the user.</strong> We may process your information to provide you with the requested service.</li>
+                    <li><strong>To enable user-to-user communications.</strong> We may process your information if you choose to use any of our offerings that allow for communication with another user.</li>
+                    <li><strong>To comply with our legal obligations.</strong> We may process your information to comply with our legal obligations, respond to legal requests, and exercise, establish, or defend our legal rights.</li>
+                </ul>
+
+                <h2 id="section3">3. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?</h2>
+                
+                <p><em>In Short: We may share information in specific situations described in this section and/or with the following third parties.</em></p>
+                
+                <p>We may need to share your personal information in the following situations:</p>
+                
+                <ul>
+                    <li><strong>Business Transfers.</strong> We may share or transfer your information in connection with, or during negotiations of, any merger, sale of company assets, financing, or acquisition of all or a portion of our business to another company.</li>
+                    <li><strong>When we use Google Maps Platform APIs.</strong> We may share your information with certain Google Maps Platform APIs (e.g., Google Maps API, Places API). Google Maps uses GPS, Wi-Fi, and cell towers to estimate your location. GPS is accurate to about 20 meters, while Wi-Fi and cell towers help improve accuracy when GPS signals are weak, like indoors. This data helps Google Maps provide directions, but it is not always perfectly precise.</li>
+                </ul>
+
+                <h2 id="section4">4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?</h2>
+                
+                <p><em>In Short: We may use cookies and other tracking technologies to collect and store your information.</em></p>
+                
+                <p>We may use cookies and similar tracking technologies (like web beacons and pixels) to gather information when you interact with our Services. Some online tracking technologies help us maintain the security of our Services and your account, prevent crashes, fix bugs, save your preferences, and assist with basic site functions.</p>
+                
+                <p>We also permit third parties and service providers to use online tracking technologies on our Services for analytics and advertising, including to help manage and display advertisements, to tailor advertisements to your interests, or to send abandoned shopping cart reminders (depending on your communication preferences). The third parties and service providers use their technology to provide advertising about products and services tailored to your interests which may appear either on our Services or on other websites.</p>
+                
+                <p>To the extent these online tracking technologies are deemed to be a "sale"/"sharing" (which includes targeted advertising, as defined under the applicable laws) under applicable US state laws, you can opt out of these online tracking technologies by submitting a request as described below under section "DO UNITED STATES RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?"</p>
+                
+                <p>Specific information about how we use such technologies and how you can refuse certain cookies is set out in our Cookie Notice.</p>
+
+                <h2 id="section5">5. HOW DO WE HANDLE YOUR SOCIAL LOGINS?</h2>
+                
+                <p><em>In Short: If you choose to register or log in to our Services using a social media account, we may have access to certain information about you.</em></p>
+                
+                <p>Our Services offer you the ability to register and log in using your third-party social media account details (like your Facebook or X logins). Where you choose to do this, we will receive certain profile information about you from your social media provider. The profile information we receive may vary depending on the social media provider concerned, but will often include your name, email address, friends list, and profile picture, as well as other information you choose to make public on such a social media platform.</p>
+                
+                <p>We will use the information we receive only for the purposes that are described in this Privacy Notice or that are otherwise made clear to you on the relevant Services. Please note that we do not control, and are not responsible for, other uses of your personal information by your third-party social media provider. We recommend that you review their privacy notice to understand how they collect, use, and share your personal information, and how you can set your privacy preferences on their sites and apps.</p>
+
+                <h2 id="section6">6. HOW LONG DO WE KEEP YOUR INFORMATION?</h2>
+                
+                <p><em>In Short: We keep your information for as long as necessary to fulfill the purposes outlined in this Privacy Notice unless otherwise required by law.</em></p>
+                
+                <p>We will only keep your personal information for as long as it is necessary for the purposes set out in this Privacy Notice, unless a longer retention period is required or permitted by law (such as tax, accounting, or other legal requirements). No purpose in this notice will require us keeping your personal information for longer than three (3) months past the start of the idle period of the user's account.</p>
+                
+                <p>When we have no ongoing legitimate business need to process your personal information, we will either delete or anonymize such information, or, if this is not possible (for example, because your personal information has been stored in backup archives), then we will securely store your personal information and isolate it from any further processing until deletion is possible.</p>
+
+                <h2 id="section7">7. DO WE COLLECT INFORMATION FROM MINORS?</h2>
+                
+                <p><em>In Short: We do not knowingly collect data from or market to children under 18 years of age.</em></p>
+                
+                <p>We do not knowingly collect, solicit data from, or market to children under 18 years of age, nor do we knowingly sell such personal information. By using the Services, you represent that you are at least 18 or that you are the parent or guardian of such a minor and consent to such minor dependent's use of the Services. If we learn that personal information from users less than 18 years of age has been collected, we will deactivate the account and take reasonable measures to promptly delete such data from our records. If you become aware of any data we may have collected from children under age 18, please contact us at hello@roomthere.com.</p>
+
+                <h2 id="section8">8. WHAT ARE YOUR PRIVACY RIGHTS?</h2>
+                
+                <p><em>In Short: You may review, change, or terminate your account at any time, depending on your country, province, or state of residence.</em></p>
+                
+                <p><strong>Withdrawing your consent:</strong> If we are relying on your consent to process your personal information, which may be express and/or implied consent depending on the applicable law, you have the right to withdraw your consent at any time. You can withdraw your consent at any time by contacting us by using the contact details provided in the section "HOW CAN YOU CONTACT US ABOUT THIS NOTICE?" below.</p>
+                
+                <p>However, please note that this will not affect the lawfulness of the processing before its withdrawal nor, when applicable law allows, will it affect the processing of your personal information conducted in reliance on lawful processing grounds other than consent.</p>
+                
+                <p><strong>Account Information</strong><br>
+                If you would at any time like to review or change the information in your account or terminate your account, you can:</p>
+                <ul>
+                    <li>Log in to your account settings and update your user account.</li>
+                </ul>
+                
+                <p>Upon your request to terminate your account, we will deactivate or delete your account and information from our active databases. However, we may retain some information in our files to prevent fraud, troubleshoot problems, assist with any investigations, enforce our legal terms and/or comply with applicable legal requirements.</p>
+                
+                <p><strong>Cookies and similar technologies:</strong> Most Web browsers are set to accept cookies by default. If you prefer, you can usually choose to set your browser to remove cookies and to reject cookies. If you choose to remove cookies or reject cookies, this could affect certain features or services of our Services.</p>
+                
+                <p>If you have questions or comments about your privacy rights, you may email us at hello@roomthere.com.</p>
+
+                <h2 id="section9">9. CONTROLS FOR DO-NOT-TRACK FEATURES</h2>
+                
+                <p>Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ("DNT") feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. At this stage, no uniform technology standard for recognizing and implementing DNT signals has been finalized. As such, we do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online. If a standard for online tracking is adopted that we must follow in the future, we will inform you about that practice in a revised version of this Privacy Notice.</p>
+                
+                <p>California law requires us to let you know how we respond to web browser DNT signals. Because there currently is not an industry or legal standard for recognizing or honoring DNT signals, we do not respond to them at this time.</p>
+
+                <h2 id="section10">10. DO UNITED STATES RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?</h2>
+                
+                <p><em>In Short: If you are a resident of California, Colorado, Connecticut, Delaware, Florida, Indiana, Iowa, Kentucky, Maryland, Minnesota, Montana, Nebraska, New Hampshire, New Jersey, Oregon, Rhode Island, Tennessee, Texas, Utah, or Virginia, you may have the right to request access to and receive details about the personal information we maintain about you and how we have processed it, correct inaccuracies, get a copy of, or delete your personal information. You may also have the right to withdraw your consent to our processing of your personal information. These rights may be limited in some circumstances by applicable law. More information is provided below.</em></p>
+                
+                <h3>Categories of Personal Information We Collect</h3>
+                <p>The table below shows the categories of personal information we have collected in the past twelve (12) months. The table includes illustrative examples of each category and does not reflect the personal information we collect from you. For a comprehensive inventory of all personal information we process, please refer to the section "WHAT INFORMATION DO WE COLLECT?"</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Examples</th>
+                            <th>Collected</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>A. Identifiers</td>
+                            <td>Contact details, such as real name, alias, postal address, telephone or mobile contact number, unique personal identifier, online identifier, Internet Protocol address, email address, and account name</td>
+                            <td>NO</td>
+                        </tr>
+                        <tr>
+                            <td>B. Personal information as defined in the California Customer Records statute</td>
+                            <td>Name, contact information, education, employment, employment history, and financial information</td>
+                            <td>NO</td>
+                        </tr>
+                        <tr>
+                            <td>C. Protected classification characteristics under state or federal law</td>
+                            <td>Gender, age, date of birth, race and ethnicity, national origin, marital status, and other demographic data</td>
+                            <td>NO</td>
+                        </tr>
+                        <tr>
+                            <td>D. Commercial information</td>
+                            <td>Transaction information, purchase history, financial details, and payment information</td>
+                            <td>NO</td>
+                        </tr>
+                        <tr>
+                            <td>E. Biometric information</td>
+                            <td>Fingerprints and voiceprints</td>
+                            <td>NO</td>
+                        </tr>
+                        <tr>
+                            <td>F. Internet or other similar network activity</td>
+                            <td>Browsing history, search history, online behavior, interest data, and interactions with our and other websites, applications, systems, and advertisements</td>
+                            <td>NO</td>
+                        </tr>
+                        <tr>
+                            <td>G. Geolocation data</td>
+                            <td>Device location</td>
+                            <td>NO</td>
+                        </tr>
+                        <tr>
+                            <td>H. Audio, electronic, sensory, or similar information</td>
+                            <td>Images and audio, video or call recordings created in connection with our business activities</td>
+                            <td>NO</td>
+                        </tr>
+                        <tr>
+                            <td>I. Professional or employment-related information</td>
+                            <td>Business contact details in order to provide you our Services at a business level or job title, work history, and professional qualifications if you apply for a job with us</td>
+                            <td>NO</td>
+                        </tr>
+                        <tr>
+                            <td>J. Education Information</td>
+                            <td>Student records and directory information</td>
+                            <td>NO</td>
+                        </tr>
+                        <tr>
+                            <td>K. Inferences drawn from collected personal information</td>
+                            <td>Inferences drawn from any of the collected personal information listed above to create a profile or summary about, for example, an individual's preferences and characteristics</td>
+                            <td>NO</td>
+                        </tr>
+                        <tr>
+                            <td>L. Sensitive personal Information</td>
+                            <td>Account login information</td>
+                            <td>YES</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <p>We only collect sensitive personal information, as defined by applicable privacy laws or the purposes allowed by law or with your consent. Sensitive personal information may be used, or disclosed to a service provider or contractor, for additional, specified purposes. You may have the right to limit the use or disclosure of your sensitive personal information. We do not collect or process sensitive personal information for the purpose of inferring characteristics about you.</p>
+                
+                <p>We may also collect other personal information outside of these categories through instances where you interact with us in person, online, or by phone or mail in the context of:</p>
+                <ul>
+                    <li>Receiving help through our customer support channels;</li>
+                    <li>Participation in customer surveys or contests; and</li>
+                    <li>Facilitation in the delivery of our Services and to respond to your inquiries.</li>
+                </ul>
+                
+                <p>We will use and retain the collected personal information as needed to provide the Services or for:</p>
+                <ul>
+                    <li>Category L - As long as the user has an account with us</li>
+                </ul>
+                
+                <h3>Sources of Personal Information</h3>
+                <p>Learn more about the sources of personal information we collect in "WHAT INFORMATION DO WE COLLECT?"</p>
+                
+                <h3>How We Use and Share Personal Information</h3>
+                <p>Learn more about how we use your personal information in the section, "HOW DO WE PROCESS YOUR INFORMATION?"</p>
+                
+                <h3>Will your information be shared with anyone else?</h3>
+                <p>We may disclose your personal information with our service providers pursuant to a written contract between us and each service provider. Learn more about how we disclose personal information to in the section, "WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?"</p>
+                
+                <p>We may use your personal information for our own business purposes, such as for undertaking internal research for technological development and demonstration. This is not considered to be "selling" of your personal information.</p>
+                
+                <p>We have not disclosed, sold, or shared any personal information to third parties for a business or commercial purpose in the preceding twelve (12) months. We will not sell or share personal information in the future belonging to website visitors, users, and other consumers.</p>
+                
+                <h3>Your Rights</h3>
+                <p>You have rights under certain US state data protection laws. However, these rights are not absolute, and in certain cases, we may decline your request as permitted by law. These rights include:</p>
+                
+                <ul>
+                    <li>Right to know whether or not we are processing your personal data</li>
+                    <li>Right to access your personal data</li>
+                    <li>Right to correct inaccuracies in your personal data</li>
+                    <li>Right to request the deletion of your personal data</li>
+                    <li>Right to obtain a copy of the personal data you previously shared with us</li>
+                    <li>Right to non-discrimination for exercising your rights</li>
+                    <li>Right to opt out of the processing of your personal data if it is used for targeted advertising (or sharing as defined under California's privacy law), the sale of personal data, or profiling in furtherance of decisions that produce legal or similarly significant effects ("profiling")</li>
+                </ul>
+                
+                <p>Depending upon the state where you live, you may also have the following rights:</p>
+                
+                <ul>
+                    <li>Right to access the categories of personal data being processed (as permitted by applicable law, including the privacy law in Minnesota)</li>
+                    <li>Right to obtain a list of the categories of third parties to which we have disclosed personal data (as permitted by applicable law, including the privacy law in California, Delaware, and Maryland)</li>
+                    <li>Right to obtain a list of specific third parties to which we have disclosed personal data (as permitted by applicable law, including the privacy law in Minnesota and Oregon)</li>
+                    <li>Right to review, understand, question, and correct how personal data has been profiled (as permitted by applicable law, including the privacy law in Minnesota)</li>
+                    <li>Right to limit use and disclosure of sensitive personal data (as permitted by applicable law, including the privacy law in California)</li>
+                    <li>Right to opt out of the collection of sensitive data and personal data collected through the operation of a voice or facial recognition feature (as permitted by applicable law, including the privacy law in Florida)</li>
+                </ul>
+                
+                <h3>How to Exercise Your Rights</h3>
+                <p>To exercise these rights, you can contact us by submitting a data subject access request, by emailing us at hello@roomthere.com, or by referring to the contact details at the bottom of this document.</p>
+                
+                <p>Under certain US state data protection laws, you can designate an authorized agent to make a request on your behalf. We may deny a request from an authorized agent that does not submit proof that they have been validly authorized to act on your behalf in accordance with applicable laws.</p>
+                
+                <h3>Request Verification</h3>
+                <p>Upon receiving your request, we will need to verify your identity to determine you are the same person about whom we have the information in our system. We will only use personal information provided in your request to verify your identity or authority to make the request. However, if we cannot verify your identity from the information already maintained by us, we may request that you provide additional information for the purposes of verifying your identity and for security or fraud-prevention purposes.</p>
+                
+                <p>If you submit the request through an authorized agent, we may need to collect additional information to verify your identity before processing your request and the agent will need to provide a written and signed permission from you to submit such request on your behalf.</p>
+                
+                <h3>Appeals</h3>
+                <p>Under certain US state data protection laws, if we decline to take action regarding your request, you may appeal our decision by emailing us at hello@roomthere.com. We will inform you in writing of any action taken or not taken in response to the appeal, including a written explanation of the reasons for the decisions. If your appeal is denied, you may submit a complaint to your state attorney general.</p>
+                
+                <h3>California "Shine The Light" Law</h3>
+                <p>California Civil Code Section 1798.83, also known as the "Shine The Light" law, permits our users who are California residents to request and obtain from us, once a year and free of charge, information about categories of personal information (if any) we disclosed to third parties for direct marketing purposes and the names and addresses of all third parties with which we shared personal information in the immediately preceding calendar year. If you are a California resident and would like to make such a request, please submit your request in writing to us by using the contact details provided in the section "HOW CAN YOU CONTACT US ABOUT THIS NOTICE?"</p>
+
+                <h2 id="section11">11. DO WE MAKE UPDATES TO THIS NOTICE?</h2>
+                
+                <p><em>In Short: Yes, we will update this notice as necessary to stay compliant with relevant laws.</em></p>
+                
+                <p>We may update this Privacy Notice from time to time. The updated version will be indicated by an updated "Revised" date at the top of this Privacy Notice. If we make material changes to this Privacy Notice, we may notify you either by prominently posting a notice of such changes or by directly sending you a notification. We encourage you to review this Privacy Notice frequently to be informed of how we are protecting your information.</p>
+
+                <h2 id="section12">12. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</h2>
+                
+                <p>If you have questions or comments about this notice, you may email us at hello@roomthere.com</p>
+
+                <h2 id="section13">13. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</h2>
+                
+                <p>Based on the applicable laws of your country, you may have the right to request access to the personal information we collect from you, change that information, or delete it. To request to review, update, or delete your personal information, please email us at hello@roomthere.com.</p>
+            </div>
+
+            <!-- Terms of Service Content -->
+            <div id="terms" class="terms-content">
+                <h1>Terms of Service</h1>
+                <p class="last-updated">Last updated: October 2025</p>
+
+                <div class="highlight-box">
+                    <p><strong>Important:</strong> By using RoomThere, you acknowledge that we are a connection service only and not a party to any rental agreements or living arrangements.</p>
+                </div>
+
+                <h2>1. Acceptance of Terms</h2>
+                <p>By accessing or using RoomThere, you agree to be bound by these Terms of Service and our Privacy Policy.</p>
+
+                <h2>2. Service Description</h2>
+                <p>RoomThere is a platform that facilitates connections between:</p>
+                <ul>
+                    <li>Homeowners with extra living space</li>
+                    <li>Graduate students and young professionals seeking affordable housing</li>
+                </ul>
+                <p><strong>RoomThere is a connection service only.</strong> We do not participate in, nor are we responsible for, any rental agreements, financial transactions, or living arrangements between users.</p>
+
+                <h2>3. User Responsibilities</h2>
+                <p>As a RoomThere user, you agree to:</p>
+                <ul>
+                    <li>Provide accurate and complete information in your profile</li>
+                    <li>Use the platform in good faith and with respectful communication</li>
+                    <li>Conduct your own due diligence when considering potential matches</li>
+                    <li>Comply with all applicable laws and regulations</li>
+                </ul>
+
+                <h2>4. Background Checks</h2>
+                <p>RoomThere offers optional third-party background checks through accredited providers:</p>
+                <ul>
+                    <li>Background checks are voluntary and processed by third-party providers</li>
+                    <li>RoomThere does not conduct background checks directly</li>
+                    <li>Users are responsible for verifying the information provided by potential matches</li>
+                    <li>Completion of a background check does not guarantee compatibility or safety</li>
+                </ul>
+
+                <h2>5. Rental Agreements and Financial Arrangements</h2>
+                <p><strong>RoomThere is not a party to any rental agreements or financial arrangements.</strong> Users are solely responsible for:</p>
+                <ul>
+                    <li>Negotiating and executing rental agreements</li>
+                    <li>Establishing rent amounts and payment terms</li>
+                    <li>Defining house rules and expectations</li>
+                    <li>Complying with local landlord-tenant laws</li>
+                </ul>
+                <p>We recommend consulting with legal professionals when creating rental agreements.</p>
+
+                <h2>6. Prohibited Activities</h2>
+                <p>You may not use RoomThere to:</p>
+                <ul>
+                    <li>Harass, intimidate, or discriminate against other users</li>
+                    <li>Post false or misleading information</li>
+                    <li>Use the platform for any illegal purpose</li>
+                    <li>Attempt to gain unauthorized access to other users' accounts or information</li>
+                </ul>
+
+                <h2>7. Limitation of Liability</h2>
+                <p>RoomThere shall not be liable for any damages resulting from:</p>
+                <ul>
+                    <li>User interactions and agreements</li>
+                    <li>Inaccurate information provided by users</li>
+                    <li>Personal injury or property damage</li>
+                    <li>Financial losses related to rental arrangements</li>
+                </ul>
+
+                <h2>8. Termination</h2>
+                <p>We may suspend or terminate your access to RoomThere if you violate these Terms of Service or engage in behavior that threatens the safety of our community.</p>
+
+                <h2>9. Changes to Terms</h2>
+                <p>We may update these Terms of Service from time to time. Continued use of RoomThere after changes constitutes acceptance of the modified terms.</p>
+
+                <h2>10. Contact Information</h2>
+                <p>If you have any questions about these Terms of Service, please contact us at <a href="mailto:hello@roomthere.com">hello@roomthere.com</a>.</p>
+            </div>
+
+            <!-- Safety Guidelines Content -->
+            <div id="safety" class="safety-content">
+                <h1>Safety Guidelines</h1>
+                <p class="last-updated">Last updated: October 2025</p>
+
+                <div class="compliance-notice">
+                    <h3>California Compliance Notice</h3>
+                    <p><strong>RoomThere is a social connection platform only.</strong> We facilitate introductions between members but do not participate in, supervise, or manage rental agreements, financial arrangements, or living terms. All agreements are made directly between members.</p>
+                </div>
+                
+                <div class="guideline-section">
+                    <h3>Before You Connect</h3>
+                    <ul class="guideline-list">
+                        <li><span class="highlight">Always communicate through RoomThere</span> until you establish trust</li>
+                        <li>Our messaging system protects your personal contact information</li>
+                        <li>Report any suspicious behavior immediately through our platform</li>
+                        <li><span class="highlight">California Law Compliance:</span> We maintain records as required by California consumer protection laws</li>
+                        <li>Look for verification badges on profiles</li>
+                        <li>Review profile completeness and authenticity</li>
+                        <li>Check member references when available</li>
+                        <li><span class="highlight">Always have at least one video call</span> before meeting in person</li>
+                        <li>Verify identity and establish comfort level</li>
+                        <li>Discuss expectations and preferences virtually first</li>
+                    </ul>
+                </div>
+                
+                <div class="guideline-section">
+                    <h3>Meeting In Person</h3>
+                    <ul class="guideline-list">
+                        <li><span class="highlight">First meetings should be in public spaces</span> like coffee shops, libraries, or community centers</li>
+                        <li>Inform a friend or family member about your meeting plans</li>
+                        <li>Share the date, time, location, and profile information</li>
+                        <li><span class="highlight">Your comfort and safety come first</span></li>
+                        <li>If something feels wrong, politely end the conversation</li>
+                        <li>You are never obligated to proceed if you feel uncomfortable</li>
+                        <li>When touring a home, consider bringing a companion</li>
+                        <li>Ensure someone knows your exact location and expected return time</li>
+                        <li>Tour during daylight hours when possible</li>
+                    </ul>
+                </div>
+                
+                <div class="guideline-section">
+                    <h3>Platform Safety Features</h3>
+                    <ul class="guideline-list">
+                        <li><span class="highlight">Optional background checks</span> available through accredited partners</li>
+                        <li><span class="highlight">California Compliance:</span> All background checks comply with California Civil Code §1786.22</li>
+                        <li><span class="highlight">RoomThere never shares your personal contact information</span></li>
+                        <li>Secure data storage and transmission</li>
+                        <li><span class="highlight">California Compliance:</span> We adhere to CCPA/CPRA requirements for data privacy</li>
+                    </ul>
+                </div>
+                
+                <div class="guideline-section">
+                    <h3>Creating Safe Connections</h3>
+                    <ul class="guideline-list">
+                        <li><span class="highlight">Discuss preferences and boundaries</span> upfront</li>
+                        <li>Create clear understanding about shared spaces and household norms</li>
+                        <li>Define communication preferences</li>
+                        <li><span class="highlight">RoomThere does not handle financial transactions</span></li>
+                        <li>Members arrange financial terms directly</li>
+                        <li>Use traceable payment methods</li>
+                        <li><span class="highlight">California Law:</span> All rental agreements must comply with California Civil Code</li>
+                        <li>Exchange emergency contact information voluntarily</li>
+                        <li>Discuss emergency procedures if cohabitating</li>
+                        <li>Know local resources and emergency contacts</li>
+                    </ul>
+                </div>
+                
+                <div class="caution-list">
+                    <h4>Red Flags to Watch For</h4>
+                    <ul class="guideline-list">
+                        <li>Pressures you to move quickly or skip safety steps</li>
+                        <li>Refuses to participate in video calls or meet in public</li>
+                        <li>Asks for money outside of agreed-upon arrangements</li>
+                        <li>Provides inconsistent information or avoids specific questions</li>
+                        <li>Seems uncomfortable with verification processes</li>
+                        <li>Makes you feel pressured or uncomfortable</li>
+                    </ul>
+                </div>
+                
+                <div class="guideline-section">
+                    <h3>California-Specific Resources</h3>
+                    <div class="resources-grid">
+                        <div class="resource-card">
+                            <i class="fas fa-phone-alt"></i>
+                            <h4>California Tenant Hotline</h4>
+                            <p>1-800-994-4442</p>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="guideline-section">
+                    <h3>RoomThere Support</h3>
+                    <ul class="guideline-list">
+                        <li>Email: <span class="highlight">hello@roomthere.com</span></li>
+                    </ul>
+                </div>
+                
+                <div class="legal-disclaimer">
+                    <h3>Important Legal Disclaimers</h3>
+                    <p><strong>RoomThere is a social connection platform only.</strong> We facilitate introductions between members but do not participate in rental agreements, financial arrangements, or living terms.</p>
+                    <p><strong>Members are solely responsible</strong> for conducting their own due diligence, creating legally compliant rental agreements, and managing all aspects of their living arrangements.</p>
+                    <p><strong>RoomThere is not a real estate broker</strong> and does not provide legal or financial advice. All members should consult with appropriate professionals before entering into agreements.</p>
+                    <p><strong>California Law Requirements:</strong> All rental agreements must comply with California Civil Code, including but not limited to security deposit limits, entry notice requirements, and habitability standards.</p>
+                </div>
+                
+                <div class="update-info">
+                    <p><strong>These guidelines are designed to comply with California laws including but not limited to: California Civil Code, Business and Professions Code, Consumer Privacy Acts, and local municipal codes.</strong></p>
+                    <p>For immediate safety concerns, always contact local authorities first. RoomThere complies with all mandatory reporting requirements under California law.</p>
+                    <p>This platform operates in compliance with California's social connection service regulations and consumer protection laws. All members are responsible for understanding and complying with applicable California laws regarding rental agreements and housing arrangements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>RoomThere</h3>
+                    <p>Connecting generations through safe, affordable housing solutions.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=61581306968087" aria-label="Visit our Facebook page">
+                            <i class="fab fa-facebook" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.instagram.com/roomthere?igsh=N2Qzajk5a3d5aWpq&utm_source=qr" aria-label="Visit our Instagram page">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="find-room.html">Find a Room</a></li>
+                        <li><a href="list-room.html">I Have a Room to Rent</a></li>
+                        <li><a href="verification.html">Get Verified</a></li>
+                        <li><a href="#" id="contact-us-link">Contact Us</a></li>
+                        <li><a href="#" id="report-problem-link">Report a Problem</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="roomthere.com/legal">Privacy Policy</a></li>
+                        <li><a href="roomthere.com/legal">Terms of Service</a></li>
+                        <li><a href="roomthere.com/legal">Safety Guidelines</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="notice">
+                <p><strong>Important Notice:</strong> RoomThere is a social connection platform only. We facilitate introductions between members but do not participate in, supervise, or manage rental agreements, financial arrangements, or living terms. All agreements are made directly between members.</p>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 RoomThere. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Contact Us Modal -->
+    <div id="contact-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('contact-modal')" aria-label="Close modal">&times;</button>
+            <h2>Contact Us</h2>
+            <p>We're here to help! Send us a message and we'll respond as soon as possible.</p>
+            
+            <div class="report-form">
+                <div class="form-group">
+                    <label for="contact-name">Your Name</label>
+                    <input type="text" id="contact-name" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="contact-email">Your Email</label>
+                    <input type="email" id="contact-email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="contact-subject">Subject</label>
+                    <select id="contact-subject" name="subject">
+                        <option value="">Select a subject</option>
+                        <option value="general">General Inquiry</option>
+                        <option value="technical">Technical Support</option>
+                        <option value="billing">Billing Question</option>
+                        <option value="safety">Safety Concern</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="contact-message">Your Message</label>
+                    <textarea id="contact-message" name="message" placeholder="Please provide details about your inquiry..."></textarea>
+                </div>
+                <button type="button" class="submit-btn" onclick="submitContact()">Send Message</button>
+            </div>
+            
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--dark-gray);">
+                Your message will be sent to <strong>hello@roomthere.com</strong> and we'll respond within 24 hours.
+            </p>
+        </div>
+    </div>
+
+    <!-- Report Problem Modal -->
+    <div id="report-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('report-modal')" aria-label="Close modal">&times;</button>
+            <h2>Report a Problem</h2>
+            <p>If you've experienced a safety issue or have concerns about another member, please let us know. We take all reports seriously.</p>
+            
+            <div class="report-form">
+                <div class="form-group">
+                    <label for="report-name">Your Name</label>
+                    <input type="text" id="report-name" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="report-email">Your Email</label>
+                    <input type="email" id="report-email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="report-type">Type of Problem</label>
+                    <select id="report-type" name="type">
+                        <option value="">Select problem type</option>
+                        <option value="safety">Safety Concern</option>
+                        <option value="harassment">Harassment</option>
+                        <option value="scam">Suspected Scam</option>
+                        <option value="inappropriate">Inappropriate Content</option>
+                        <option value="technical">Technical Issue</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="report-description">Describe the problem</label>
+                    <textarea id="report-description" name="description" placeholder="Please provide details about the issue you're reporting..."></textarea>
+                </div>
+                <button type="button" class="submit-btn" onclick="submitReport()">Send Report</button>
+            </div>
+            
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--dark-gray);">
+                Your report will be sent to <strong>hello@roomthere.com</strong> and we'll respond within 24 hours.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Tab functionality
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const contentSections = document.querySelectorAll('.policy-content, .terms-content, .safety-content');
+        
+        function switchTab(tabName) {
+            // Update tab buttons
+            tabButtons.forEach(button => {
+                if (button.dataset.tab === tabName) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+            
+            // Update content sections
+            contentSections.forEach(section => {
+                if (section.id === tabName) {
+                    section.classList.add('active-content');
+                } else {
+                    section.classList.remove('active-content');
+                }
+            });
+            
+            // Scroll to top of content
+            document.querySelector('.content-section').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Add event listeners to tab buttons
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                switchTab(button.dataset.tab);
+            });
+        });
+        
+        // Back to top functionality
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
+        // Contact Us link
+        document.getElementById('contact-us-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            openModal('contact-modal');
+        });
+        
+        // Report problem link
+        document.getElementById('report-problem-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            openModal('report-modal');
+        });
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+        
+        // Submit contact form function
+        function submitContact() {
+            const name = document.getElementById('contact-name').value;
+            const email = document.getElementById('contact-email').value;
+            const subject = document.getElementById('contact-subject').value;
+            const message = document.getElementById('contact-message').value;
+            
+            if (!name || !email || !subject || !message) {
+                alert('Please fill in all fields before submitting.');
+                return;
+            }
+            
+            const subjectText = document.querySelector(`#contact-subject option[value="${subject}"]`).textContent;
+            const emailSubject = "Contact Us: " + subjectText + " from " + name;
+            const body = "Name: " + name + "\nEmail: " + email + "\nSubject: " + subjectText + "\n\nMessage:\n" + message;
+            const mailtoLink = "mailto:hello@roomthere.com?subject=" + encodeURIComponent(emailSubject) + "&body=" + encodeURIComponent(body);
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Close modal and show confirmation
+            closeModal('contact-modal');
+            alert('Thank you for your message. Your email client will open with a pre-filled message. Please send it to complete your inquiry.');
+        }
+        
+        // Submit report function
+        function submitReport() {
+            const name = document.getElementById('report-name').value;
+            const email = document.getElementById('report-email').value;
+            const type = document.getElementById('report-type').value;
+            const description = document.getElementById('report-description').value;
+            
+            if (!name || !email || !type || !description) {
+                alert('Please fill in all fields before submitting.');
+                return;
+            }
+            
+            const typeText = document.querySelector(`#report-type option[value="${type}"]`).textContent;
+            const subject = "Problem Report: " + typeText + " from " + name;
+            const body = "Name: " + name + "\nEmail: " + email + "\nProblem Type: " + typeText + "\n\nDescription:\n" + description;
+            const mailtoLink = "mailto:hello@roomthere.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Close modal and show confirmation
+            closeModal('report-modal');
+            alert('Thank you for your report. Your email client will open with a pre-filled message. Please send it to complete your report.');
+        }
+    </script>
+</body>
+</html>

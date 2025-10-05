@@ -138,171 +138,141 @@
         .auth-form-container {
             flex: 1;
             padding: 60px 40px;
-        }
-        
-        .auth-tabs {
             display: flex;
-            margin-bottom: 30px;
-            border-bottom: 1px solid var(--light-gray);
+            flex-direction: column;
+            justify-content: center;
         }
         
-        .auth-tab {
-            padding: 15px 30px;
-            background: none;
-            border: none;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--medium-gray);
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
-        }
-        
-        .auth-tab.active {
-            color: var(--navy-blue);
-        }
-        
-        .auth-tab.active::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--navy-blue);
-        }
-        
-        .auth-form {
-            display: none;
-        }
-        
-        .auth-form.active {
-            display: block;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--dark-gray);
-        }
-        
-        .form-group input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-        
-        .form-group input:focus {
-            border-color: var(--navy-blue);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.2);
-        }
-        
-        .password-container {
-            position: relative;
-        }
-        
-        .toggle-password {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: var(--medium-gray);
-            cursor: pointer;
-        }
-        
-        .remember-forgot {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-        
-        .remember-me {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .remember-me input {
-            width: auto;
-        }
-        
-        .forgot-password {
-            color: var(--navy-blue);
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            width: 100%;
-            padding: 15px;
-            background: var(--navy-blue);
-            color: var(--white);
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
+        .auth-title {
             text-align: center;
+            margin-bottom: 30px;
         }
         
-        .btn:hover, .btn:focus {
-            background: #002244;
+        .auth-title h1 {
+            font-size: 2rem;
+            color: var(--navy-blue);
+            margin-bottom: 10px;
+        }
+        
+        .auth-title p {
+            color: var(--medium-gray);
+            font-size: 1.1rem;
+        }
+        
+        .social-auth-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .btn-social {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: var(--white);
+            color: var(--dark-gray);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .btn-social:hover, .btn-social:focus {
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             outline: 2px solid var(--kelly-green);
             outline-offset: 2px;
         }
         
-        .btn-google {
-            background: var(--white);
-            color: var(--dark-gray);
-            border: 2px solid #ddd;
+        .btn-google:hover {
+            border-color: #DB4437;
+            background: #f8f8f8;
+        }
+        
+        .btn-facebook {
+            background: #1877F2;
+            color: white;
+            border-color: #1877F2;
+        }
+        
+        .btn-facebook:hover {
+            background: #166FE5;
+            border-color: #166FE5;
+        }
+        
+        .btn-apple {
+            background: #000;
+            color: white;
+            border-color: #000;
+        }
+        
+        .btn-apple:hover {
+            background: #1a1a1a;
+            border-color: #1a1a1a;
+        }
+        
+        .social-icon {
+            font-size: 1.2rem;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .auth-divider {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        
-        .btn-google:hover, .btn-google:focus {
-            background: #f8f9fa;
-            border-color: var(--medium-gray);
-        }
-        
-        .divider {
-            text-align: center;
-            margin: 25px 0;
-            position: relative;
-        }
-        
-        .divider::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: #ddd;
-        }
-        
-        .divider span {
-            background: var(--white);
-            padding: 0 15px;
+            margin: 30px 0;
             color: var(--medium-gray);
+        }
+        
+        .auth-divider::before,
+        .auth-divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #e0e0e0;
+        }
+        
+        .auth-divider span {
+            padding: 0 15px;
+            font-size: 0.9rem;
+        }
+        
+        .auth-benefits {
+            background: var(--light-gray);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .auth-benefits h3 {
+            color: var(--navy-blue);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .auth-benefits ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .auth-benefits li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+        }
+        
+        .auth-benefits i {
+            color: var(--kelly-green);
+            font-size: 0.9rem;
         }
         
         .auth-footer {
@@ -339,77 +309,79 @@
             border: 1px solid #f5c6cb;
         }
         
-        /* Footer Styles - From available-rooms.html */
+        /* Footer Styles */
         footer {
             background-color: var(--navy-blue);
             color: var(--white);
-            padding: 40px 0 20px;
+            padding: 3rem 0 1rem;
             margin-top: auto;
         }
         
         .footer-content {
             display: flex;
             justify-content: space-between;
-            align-items: center;
             flex-wrap: wrap;
-            margin-bottom: 20px;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px 20px;
         }
         
-        .footer-links {
-            display: flex;
-            gap: 20px;
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
         }
         
-        .footer-links a {
+        .footer-column h3 {
+            color: var(--orange);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
             color: var(--white);
             text-decoration: none;
-            font-weight: 600;
             transition: color 0.3s;
         }
         
-        .footer-links a:hover, .footer-links a:focus {
+        .footer-column ul li a:hover,
+        .footer-column ul li a:focus {
             color: var(--orange);
-        }
-        
-        footer .logo {
-            color: var(--white);
-            font-size: 2rem;
-            font-weight: 700;
-            text-decoration: none;
-        }
-        
-        footer .logo span {
-            color: var(--kelly-green);
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .social-links a {
-            color: var(--white);
-            font-size: 1.5rem;
-            transition: color 0.3s;
-            padding: 5px;
-            border-radius: 3px;
-        }
-        
-        .social-links a:hover, .social-links a:focus {
-            color: var(--orange);
-            background-color: rgba(255, 255, 255, 0.1);
             outline: none;
         }
         
         .copyright {
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.9rem;
-            color: #ccc;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 1000px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
         }
         
-        /* Modal Styles - Fixed positioning */
+        .notice {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            max-width: 1000px;
+            margin: 1rem auto 0;
+        }
+        
+        /* Modal Styles */
         .modal {
             position: fixed;
             z-index: 1000;
@@ -505,10 +477,6 @@
                 gap: 20px;
                 text-align: center;
             }
-            
-            .footer-links {
-                justify-content: center;
-            }
         }
         
         @media (prefers-reduced-motion: reduce) {
@@ -518,7 +486,7 @@
                 transition-duration: 0.01ms !important;
             }
             
-            .btn:hover, .benefit-card:hover {
+            .btn-social:hover {
                 transform: none;
             }
         }
@@ -534,7 +502,7 @@
             <div class="header-content">
                 <a href="index.html" class="logo">Room<span>There</span></a>
                 <nav>
-                    <a href="index.html" class="btn" style="width: auto; padding: 10px 20px;">Back to Home</a>
+                    <a href="index.html" class="btn-social" style="width: auto; padding: 10px 20px;">Back to Home</a>
                 </nav>
             </div>
         </div>
@@ -547,122 +515,91 @@
                 <!-- Welcome Section -->
                 <div class="auth-welcome">
                     <h2>Welcome to RoomThere</h2>
-                    <p>Sign in to your account to continue your journey to finding the perfect intergenerational living arrangement.</p>
+                    <p>Join our community of seniors and graduate students creating meaningful intergenerational living arrangements.</p>
                     
                     <ul class="benefit-list">
-                        <li><i class="fas fa-check-circle"></i> Connect with verified users</li>
-                        <li><i class="fas fa-check-circle"></i> Safe and secure platform</li>
-                        <li><i class="fas fa-check-circle"></i> Find your perfect match</li>
-                        <li><i class="fas fa-check-circle"></i> Build meaningful connections</li>
+                        <li><i class="fas fa-check-circle"></i> Verified background checks</li>
+                        <li><i class="fas fa-check-circle"></i> Secure messaging</li>
+                        <li><i class="fas fa-check-circle"></i> Compatible matches</li>
+                        <li><i class="fas fa-check-circle"></i> Safe community</li>
                     </ul>
                 </div>
                 
-                <!-- Form Section -->
+                <!-- Social Auth Section -->
                 <div class="auth-form-container">
-                    <div class="auth-tabs">
-                        <button class="auth-tab active" id="signin-tab">Sign In</button>
-                        <button class="auth-tab" id="signup-tab">Sign Up</button>
+                    <div class="auth-title">
+                        <h1>Get Started</h1>
+                        <p>Sign in securely with your social account</p>
                     </div>
                     
-                    <!-- Sign In Form -->
-                    <form class="auth-form active" id="signin-form">
-                        <div id="signin-status" class="status-message" role="alert" aria-live="polite"></div>
-                        
-                        <div class="form-group">
-                            <label for="signin-email">Email Address</label>
-                            <input type="email" id="signin-email" name="email" required aria-required="true">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="signin-password">Password</label>
-                            <div class="password-container">
-                                <input type="password" id="signin-password" name="password" required aria-required="true">
-                                <button type="button" class="toggle-password" aria-label="Show password">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="remember-forgot">
-                            <div class="remember-me">
-                                <input type="checkbox" id="remember-me" name="remember">
-                                <label for="remember-me">Remember me</label>
-                            </div>
-                            <a href="#" class="forgot-password">Forgot password?</a>
-                        </div>
-                        
-                        <button type="submit" class="btn">Sign In</button>
-                        
-                        <div class="divider"><span>Or continue with</span></div>
-                        
-                        <button type="button" class="btn btn-google">
-                            <i class="fab fa-google"></i> Google
-                        </button>
-                    </form>
+                    <div id="auth-status" class="status-message" role="alert" aria-live="polite"></div>
                     
-                    <!-- Sign Up Form -->
-                    <form class="auth-form" id="signup-form">
-                        <div id="signup-status" class="status-message" role="alert" aria-live="polite"></div>
+                    <div class="social-auth-buttons">
+                        <button class="btn-social btn-google" onclick="signInWithGoogle()">
+                            <i class="fab fa-google social-icon"></i>
+                            Continue with Google
+                        </button>
                         
-                        <div class="form-group">
-                            <label for="signup-name">Full Name</label>
-                            <input type="text" id="signup-name" name="name" required aria-required="true">
-                        </div>
+                        <button class="btn-social btn-facebook" onclick="signInWithFacebook()">
+                            <i class="fab fa-facebook-f social-icon"></i>
+                            Continue with Facebook
+                        </button>
                         
-                        <div class="form-group">
-                            <label for="signup-email">Email Address</label>
-                            <input type="email" id="signup-email" name="email" required aria-required="true">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="signup-password">Password</label>
-                            <div class="password-container">
-                                <input type="password" id="signup-password" name="password" required aria-required="true">
-                                <button type="button" class="toggle-password" aria-label="Show password">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                            <small>Must be at least 8 characters with a number and symbol</small>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="user-type">I am a...</label>
-                            <select id="user-type" name="userType" required aria-required="true">
-                                <option value="">Select an option</option>
-                                <option value="senior">Senior Homeowner</option>
-                                <option value="family">Family Member</option>
-                                <option value="student">Graduate Student</option>
-                            </select>
-                        </div>
-                        
-                        <div class="remember-me">
-                            <input type="checkbox" id="agree-terms" name="agreeTerms" required aria-required="true">
-                            <label for="agree-terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
-                        </div>
-                        
-                        <button type="submit" class="btn" style="margin-top: 20px;">Create Account</button>
-                    </form>
+                        <button class="btn-social btn-apple" onclick="signInWithApple()">
+                            <i class="fab fa-apple social-icon"></i>
+                            Continue with Apple
+                        </button>
+                    </div>
+                    
+                    <div class="auth-divider">
+                        <span>Why social sign-in?</span>
+                    </div>
+                    
+                    <div class="auth-benefits">
+                        <h3>Benefits of Social Authentication</h3>
+                        <ul>
+                            <li><i class="fas fa-shield-alt"></i> Enhanced security - no passwords to remember</li>
+                            <li><i class="fas fa-bolt"></i> One-click sign-in - faster access</li>
+                            <li><i class="fas fa-user-check"></i> Verified identity - increased trust</li>
+                            <li><i class="fas fa-sync"></i> Automatic profile updates</li>
+                        </ul>
+                    </div>
                     
                     <div class="auth-footer">
-                        <p>By signing in, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
+                        <p>By continuing, you agree to our <a href="terms-of-service.html">Terms of Service</a> and <a href="privacy-policy.html">Privacy Policy</a></p>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Footer - From available-rooms.html -->
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
-                <a href="index.html" class="logo">Room<span>There</span></a>
-                <div class="footer-links">
-                    <a href="#" id="footerContactLink">Contact Us</a>
+                <div class="footer-column">
+                    <h3>RoomThere</h3>
+                    <p>Connecting generations through safe, affordable housing solutions.</p>
                 </div>
-                <div class="social-links">
-                    <a href="https://www.facebook.com/profile.php?id=61581306968087" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
-                    <a href="https://www.instagram.com/roomthere" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/safety-guidelines">Safety Guidelines</a></li>
+                        <li><a href="#" id="footerContactLink">Contact Us</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                    </ul>
                 </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <ul>
+                        <li><a href="https://www.facebook.com/profile.php?id=61581306968087"><i class="fab fa-facebook" aria-hidden="true"></i> Facebook</a></li>
+                        <li><a href="https://www.instagram.com/roomthere"><i class="fab fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="notice">
+                <p><strong>Important Notice:</strong> RoomThere is a social connection platform only. We facilitate introductions between members but do not participate in, supervise, or manage rental agreements, financial arrangements, or living terms. All agreements are made directly between members.</p>
             </div>
             <div class="copyright">
                 <p>&copy; 2025 RoomThere. All rights reserved.</p>
@@ -671,7 +608,7 @@
         </div>
     </footer>
 
-    <!-- Contact Us Modal - Fixed positioning -->
+    <!-- Contact Us Modal -->
     <div id="contactModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -693,80 +630,56 @@
                     <label for="modal-message">Message *</label>
                     <textarea id="modal-message" name="message" required placeholder="How can we help you?"></textarea>
                 </div>
-                <button type="submit" class="btn btn-secondary">Send Message</button>
+                <button type="submit" class="btn-social" style="background: var(--navy-blue); color: white; border-color: var(--navy-blue);">Send Message</button>
             </form>
         </div>
     </div>
 
     <script>
-        // Tab switching functionality
-        const signinTab = document.getElementById('signin-tab');
-        const signupTab = document.getElementById('signup-tab');
-        const signinForm = document.getElementById('signin-form');
-        const signupForm = document.getElementById('signup-form');
-        
-        signinTab.addEventListener('click', () => {
-            signinTab.classList.add('active');
-            signupTab.classList.remove('active');
-            signinForm.classList.add('active');
-            signupForm.classList.remove('active');
-        });
-        
-        signupTab.addEventListener('click', () => {
-            signupTab.classList.add('active');
-            signinTab.classList.remove('active');
-            signupForm.classList.add('active');
-            signinForm.classList.remove('active');
-        });
-        
-        // Toggle password visibility
-        document.querySelectorAll('.toggle-password').forEach(button => {
-            button.addEventListener('click', function() {
-                const input = this.previousElementSibling;
-                const icon = this.querySelector('i');
-                
-                if (input.type === 'password') {
-                    input.type = 'text';
-                    icon.classList.remove('fa-eye');
-                    icon.classList.add('fa-eye-slash');
-                    this.setAttribute('aria-label', 'Hide password');
-                } else {
-                    input.type = 'password';
-                    icon.classList.remove('fa-eye-slash');
-                    icon.classList.add('fa-eye');
-                    this.setAttribute('aria-label', 'Show password');
-                }
-            });
-        });
-        
-        // Form submission handlers (for demo purposes)
-        document.getElementById('signin-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const statusMessage = document.getElementById('signin-status');
-            statusMessage.textContent = 'Signing in...';
-            statusMessage.className = 'status-message status-success';
-            statusMessage.style.display = 'block';
+        // Social Authentication Functions
+        function signInWithGoogle() {
+            showStatus('Connecting with Google...', 'success');
             
-            // In a real app, this would be an API call
+            // Simulate API call
             setTimeout(() => {
-                statusMessage.textContent = 'Successfully signed in! Redirecting...';
-                // window.location.href = 'dashboard.html';
-            }, 1000);
-        });
-        
-        document.getElementById('signup-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const statusMessage = document.getElementById('signup-status');
-            statusMessage.textContent = 'Creating your account...';
-            statusMessage.className = 'status-message status-success';
-            statusMessage.style.display = 'block';
-            
-            // In a real app, this would be an API call
-            setTimeout(() => {
-                statusMessage.textContent = 'Account created successfully! Redirecting...';
-                // window.location.href = 'profile-setup.html';
+                showStatus('Success! Redirecting to your dashboard...', 'success');
+                // In production: window.location.href = '/dashboard.html';
             }, 1500);
-        });
+        }
+        
+        function signInWithFacebook() {
+            showStatus('Connecting with Facebook...', 'success');
+            
+            // Simulate API call
+            setTimeout(() => {
+                showStatus('Success! Redirecting to your dashboard...', 'success');
+                // In production: window.location.href = '/dashboard.html';
+            }, 1500);
+        }
+        
+        function signInWithApple() {
+            showStatus('Connecting with Apple...', 'success');
+            
+            // Simulate API call
+            setTimeout(() => {
+                showStatus('Success! Redirecting to your dashboard...', 'success');
+                // In production: window.location.href = '/dashboard.html';
+            }, 1500);
+        }
+        
+        function showStatus(message, type) {
+            const statusEl = document.getElementById('auth-status');
+            statusEl.textContent = message;
+            statusEl.className = `status-message status-${type}`;
+            statusEl.style.display = 'block';
+            
+            // Auto-hide success messages after 3 seconds
+            if (type === 'success') {
+                setTimeout(() => {
+                    statusEl.style.display = 'none';
+                }, 3000);
+            }
+        }
         
         // Contact Us Modal Functionality
         const contactModal = document.getElementById('contactModal');
@@ -774,61 +687,88 @@
         const closeModal = document.querySelector('.close');
         const footerContactLink = document.getElementById('footerContactLink');
 
-        // Check if elements exist
         if (contactModal && contactModalForm && closeModal && footerContactLink) {
-            // Function to open modal
             function openContactModal() {
                 contactModal.style.display = 'flex';
                 document.body.style.overflow = 'hidden';
                 document.getElementById('modal-name').focus();
             }
 
-            // Function to close modal
             function closeContactModal() {
                 contactModal.style.display = 'none';
                 document.body.style.overflow = 'auto';
                 contactModalForm.reset();
             }
 
-            // Close modal when clicking X
             closeModal.addEventListener('click', closeContactModal);
 
-            // Close modal when clicking outside
             window.addEventListener('click', function(event) {
                 if (event.target === contactModal) {
                     closeContactModal();
                 }
             });
 
-            // Close modal with Escape key
             document.addEventListener('keydown', function(event) {
                 if (event.key === 'Escape' && contactModal.style.display === 'flex') {
                     closeContactModal();
                 }
             });
 
-            // Handle form submission
             contactModalForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
                 const name = document.getElementById('modal-name').value;
                 const email = document.getElementById('modal-email').value;
-                const phone = document.getElementById('modal-phone').value;
-                const message = document.getElementById('modal-message').value;
                 
-                // Show confirmation (in real app, send to server)
                 alert(`Thank you, ${name}! Your message has been sent. We'll contact you at ${email} soon.`);
-                
-                // Close modal
                 closeContactModal();
             });
 
-            // Make the Contact Us link work
             footerContactLink.addEventListener('click', function(e) {
                 e.preventDefault();
                 openContactModal();
             });
         }
+        
+        // Load authentication SDKs (in production)
+        function loadAuthSDKs() {
+            // Google SDK
+            const googleScript = document.createElement('script');
+            googleScript.src = 'https://accounts.google.com/gsi/client';
+            googleScript.async = true;
+            googleScript.defer = true;
+            document.head.appendChild(googleScript);
+            
+            // Facebook SDK
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId: 'YOUR_FACEBOOK_APP_ID',
+                    cookie: true,
+                    xfbml: true,
+                    version: 'v12.0'
+                });
+            };
+            
+            (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "https://connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAuthSDKs();
+            
+            // Check if user is already authenticated
+            const token = localStorage.getItem('roomthere_token');
+            if (token) {
+                // User is logged in, could redirect to dashboard
+                // window.location.href = '/dashboard.html';
+            }
+        });
         
         // Add focus styles for keyboard navigation
         document.addEventListener('keydown', function(e) {

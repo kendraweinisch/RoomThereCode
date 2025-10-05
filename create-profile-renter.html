@@ -495,65 +495,201 @@
             margin-bottom: 1rem;
         }
         
-        /* Simple Footer */
+        /* Footer Styles */
         footer {
             background-color: var(--navy-blue);
             color: var(--white);
-            padding: 25px 0 15px;
+            padding: 3rem 0 1rem;
             margin-top: auto;
         }
         
         .footer-content {
             display: flex;
             justify-content: space-between;
-            align-items: center;
             flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
         
-        footer .logo {
-            color: var(--white);
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
         }
         
-        footer .logo span {
-            color: var(--kelly-green);
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .social-links a {
-            color: var(--white);
-            font-size: 1.5rem;
-            transition: color 0.3s;
-            padding: 5px;
-            border-radius: 3px;
-        }
-        
-        .social-links a:hover, .social-links a:focus {
+        .footer-column h3 {
             color: var(--orange);
-            background-color: rgba(255, 255, 255, 0.1);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover,
+        .footer-column ul li a:focus {
+            color: var(--orange);
             outline: none;
         }
         
         .copyright {
             text-align: center;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.9rem;
-            color: #ccc;
-            width: 100%;
-            margin-top: 15px;
+            color: rgba(255, 255, 255, 0.7);
         }
         
-        .disclaimer {
+        .notice {
             background-color: rgba(255, 255, 255, 0.1);
             padding: 1rem;
             border-radius: 5px;
             margin-top: 1rem;
             font-size: 0.9rem;
-            text-align: center;
+        }
+        
+        /* Contact Modal Styles */
+        .contact-modal {
+            background-color: var(--white);
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--light-gray);
+        }
+        
+        .modal-header h2 {
+            color: var(--navy-blue);
+            font-size: 1.8rem;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-gray);
+            padding: 0.5rem;
+            transition: color 0.3s;
+        }
+        
+        .close-modal:hover,
+        .close-modal:focus {
+            color: var(--orange);
+            outline: 2px solid var(--orange);
+            border-radius: 4px;
+        }
+        
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--navy-blue);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--navy-blue);
+            outline: none;
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: var(--orange);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .submit-btn:hover,
+        .submit-btn:focus {
+            background-color: #e67e00;
+            outline: 2px solid var(--navy-blue);
+        }
+        
+        /* Report Problem Modal */
+        .report-modal {
+            background-color: var(--white);
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .emergency-notice {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            color: #856404;
+        }
+        
+        .emergency-notice h3 {
+            color: #856404;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .emergency-notice p {
+            margin-bottom: 0.5rem;
         }
         
         /* Focus styles for all interactive elements */
@@ -662,8 +798,6 @@
             
             .footer-content {
                 flex-direction: column;
-                gap: 20px;
-                text-align: center;
             }
         }
         
@@ -920,28 +1054,124 @@
         </div>
     </section>
 
-    <!-- Simple Footer -->
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="logo">Room<span>There</span></div>
-                <div class="social-links">
-                    <a href="#" aria-label="Visit our Facebook page">
-                        <i class="fab fa-facebook" aria-hidden="true"></i>
-                    </a>
-                    <a href="#" aria-label="Visit our Instagram page">
-                        <i class="fab fa-instagram" aria-hidden="true"></i>
-                    </a>
+                <div class="footer-column">
+                    <h3>RoomThere</h3>
+                    <p>Connecting generations through safe, affordable housing solutions.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/safety-guidelines">Safety Guidelines</a></li>
+                        <li><a href="#" id="report-link">Report a Problem</a></li>
+                        <li><a href="#" id="contact-link">Contact Us</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <ul>
+                        <li><a href="https://www.facebook.com/profile.php?id=61581306968087"><i class="fab fa-facebook" aria-hidden="true"></i> Facebook</a></li>
+                        <li><a href="https://www.instagram.com/roomthere?igsh=N2Qzajk5a3d5aWpq&utm_source=qr"><i class="fab fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="disclaimer">
-                <p><strong>Important Notice:</strong> RoomThere facilitates connections between users only. All rental agreements, financial arrangements, and living terms are negotiated and managed directly between the homeowner and the renter. RoomThere is not a party to any agreements and does not provide legal or financial advice.</p>
+            <div class="notice">
+                <p><strong>Important Notice:</strong> RoomThere is a social connection platform only. We facilitate introductions between members but do not participate in, supervise, or manage rental agreements, financial arrangements, or living terms. All agreements are made directly between members.</p>
             </div>
             <div class="copyright">
                 <p>&copy; 2025 RoomThere. All rights reserved.</p>
             </div>
         </div>
     </footer>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="contact-modal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+            <div class="modal-header">
+                <h2 id="modal-title">Contact RoomThere</h2>
+                <button class="close-modal" aria-label="Close contact form">×</button>
+            </div>
+            <form class="contact-form" id="contact-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="user-type">I am a:</label>
+                    <select id="user-type" name="user-type" required>
+                        <option value="">Please select</option>
+                        <option value="homeowner">Homeowner with a room to share</option>
+                        <option value="renter">Looking for a room to rent</option>
+                        <option value="family">Family member of a homeowner</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Report Problem Modal -->
+    <div id="reportModal" class="modal">
+        <div class="report-modal" role="dialog" aria-labelledby="report-modal-title" aria-modal="true">
+            <div class="modal-header">
+                <h2 id="report-modal-title">Report a Problem</h2>
+                <button class="close-modal" aria-label="Close report form">×</button>
+            </div>
+            <div class="emergency-notice">
+                <h3><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> Emergency Notice</h3>
+                <p><strong>If this is an emergency or someone is in immediate danger, please call 911 first.</strong></p>
+                <p>We are here to help with non-emergency issues related to the RoomThere platform.</p>
+            </div>
+            <form class="contact-form" id="report-form">
+                <div class="form-group">
+                    <label for="report-name">Full Name</label>
+                    <input type="text" id="report-name" name="report-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="report-email">Email Address</label>
+                    <input type="email" id="report-email" name="report-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="report-type">Type of Issue</label>
+                    <select id="report-type" name="report-type" required>
+                        <option value="">Please select</option>
+                        <option value="technical">Technical Problem</option>
+                        <option value="safety">Safety Concern</option>
+                        <option value="user-conduct">User Conduct Issue</option>
+                        <option value="payment">Payment Issue</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="report-subject">Subject</label>
+                    <input type="text" id="report-subject" name="report-subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="report-message">Describe the Problem</label>
+                    <textarea id="report-message" name="report-message" required placeholder="Please provide as much detail as possible about the issue you're experiencing..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Report</button>
+            </form>
+        </div>
+    </div>
 
     <!-- Terms of Service Modal -->
     <div id="terms-modal" class="modal">
@@ -1106,6 +1336,85 @@
                 alert('Please fill in all required fields.');
             }
         });
+
+        // Footer modal functionality
+        const contactModal = document.getElementById('contactModal');
+        const reportModal = document.getElementById('reportModal');
+        const contactLink = document.getElementById('contact-link');
+        const reportLink = document.getElementById('report-link');
+        const closeButtons = document.querySelectorAll('.close-modal');
+
+        // Open contact modal
+        if (contactLink) {
+            contactLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                contactModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            });
+        }
+
+        // Open report modal
+        if (reportLink) {
+            reportLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                reportModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            });
+        }
+
+        // Close modals
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                contactModal.style.display = 'none';
+                reportModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === contactModal) {
+                contactModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+            if (e.target === reportModal) {
+                reportModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close modals with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                contactModal.style.display = 'none';
+                reportModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Contact form submission
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! We will get back to you soon.');
+                contactModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                contactForm.reset();
+            });
+        }
+
+        // Report form submission
+        const reportForm = document.getElementById('report-form');
+        if (reportForm) {
+            reportForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for reporting the problem. We will investigate and get back to you soon.');
+                reportModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                reportForm.reset();
+            });
+        }
     </script>
 </body>
 </html>
